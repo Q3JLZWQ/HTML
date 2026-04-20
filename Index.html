@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative Developer Portfolio - Showcasing digital experiences and interactive projects">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https://github.com; font-src 'self' https://fonts.gstatic.com; media-src 'self'; frame-src https://www.youtube.com https://player.vimeo.com; connect-src 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <title>Q3JLZWQ</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0a0a' width='100' height='100' rx='20'/><text x='50' y='65' text-anchor='middle' font-size='60'>🎨</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://github.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        apple: {
+                            bg: '#000000',
+                            glass: 'rgba(255, 255, 255, 0.04)',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            highlight: 'rgba(255, 255, 255, 0.12)',
+                            text: 'rgba(255, 255, 255, 0.9)',
+                            muted: 'rgba(255, 255, 255, 0.5)',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'bounce-slow': 'bounceSlow 2s ease-in-out infinite',
+                        'pulse-ring': 'pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        bounceSlow: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-12px)' }
+                        },
+                        pulseRing: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.8' },
+                            '100%': { transform: 'scale(2.5)', opacity: '0' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '200% 0' },
+                            '100%': { backgroundPosition: '-200% 0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .apple-glass {
+                background: rgba(255, 255, 255, 0.04);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 24px rgba(0, 0, 0, 0.2);
+            }
+            .apple-glass-strong {
+                background: #0a0a0a;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4);
+            }
+            .no-scrollbar::-webkit-scrollbar { display: none; }
+            .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-clamp: 2;
+            }
+            .skeleton {
+                background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+                background-size: 200% 100%;
+                animation: shimmer 1.5s infinite;
+            }
+            .img-loading {
+                filter: blur(20px);
+                transform: scale(1.05);
+                transition: filter 0.6s ease, transform 0.6s ease, opacity 0.4s ease;
+                opacity: 0.5;
+            }
+            .img-loaded {
+                filter: blur(0);
+                transform: scale(1);
+                opacity: 1;
+            }
+            .reveal-item {
+                opacity: 0;
+                transform: translateY(24px);
+                transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-item.revealed {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .project-card {
+                position: relative;
+                overflow: hidden;
+                background: #000000;
+                border-radius: 24px;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.2);
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+                width: 100%;
+                min-height: 420px;
+            }
+            .project-card.is-filtering {
+                transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .filter-btn.active-filter {
+                background: rgba(255, 255, 255, 0.15) !important;
+                border-color: rgba(255, 255, 255, 0.25) !important;
+                color: rgba(255, 255, 255, 0.9) !important;
+            }
+            .filter-btn { transition: all 0.3s ease; }
+            .project-card-image {
+                transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            }
+            .project-card-content {
+                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .apple-tag {
+                background: rgba(255, 255, 255, 0.06);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+                padding: 6px 12px;
+                border-radius: 9999px;
+                font-size: 0.7rem;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.6);
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                cursor: pointer;
+            }
+            .scroll-btn-container {
+                position: absolute;
+                top: 55%;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                z-index: 20;
+            }
+            .scroll-btn {
+                position: relative;
+                width: 64px;
+                height: 64px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 24px rgba(0, 0, 0, 0.2);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+            }
+            .scroll-btn:hover {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(255, 255, 255, 0.2);
+                transform: translateY(-4px);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 12px 36px rgba(0, 0, 0, 0.3);
+            }
+            .scroll-btn:active { transform: translateY(0); }
+            .scroll-btn svg {
+                width: 24px;
+                height: 24px;
+                stroke: rgba(255, 255, 255, 0.7);
+                stroke-width: 1.5;
+                fill: none;
+                pointer-events: none;
+            }
+            .scroll-btn::before,
+            .scroll-btn::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            .scroll-btn::after { animation-delay: 1s; }
+            @keyframes pulseRing {
+                0% { width: 100%; height: 100%; opacity: 0.8; }
+                100% { width: 200%; height: 200%; opacity: 0; }
+            }
+            .scroll-label {
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.5);
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                animation: bounceSlow 2s ease-in-out infinite;
+            }
+            .hero-fallback { background: radial-gradient(circle at center, #0f0f12 0%, #000000 100%); }
+            :focus-visible {
+                outline: 2px solid rgba(59, 130, 246, 0.8);
+                outline-offset: 2px;
+                border-radius: 6px;
+            }
+            @-moz-document url-prefix() {
+                .project-card-content h3,
+                .project-card-content p { color: rgba(255, 255, 255, 0.95); }
+                .apple-tag { color: rgba(255, 255, 255, 0.7); }
+            }
+            #backToTop {
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                pointer-events: none;
+            }
+            #backToTop.visible {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            #portfolio {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            #portfolio.section-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .hero-video-container {
+                position: absolute;
+                top: 0; left: 0; width: 100%; height: 100%;
+                overflow: hidden;
+                z-index: 0;
+            }
+            .hero-video-container video {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: cover;
+                pointer-events: none;
+            }
+            .modal-instant {
+                transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+        }
+        @media (hover: hover) {
+            .project-card:hover {
+                background: #0a0a0a;
+                border-color: rgba(255, 255, 255, 0.12);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 36px rgba(0, 0, 0, 0.3);
+            }
+            .project-card:hover .project-card-image {
+                transform: scale(1.03);
+                opacity: 0.15;
+            }
+            .project-card:hover .project-card-content {
+                transform: translateY(-4px);
+            }
+            .apple-tag:hover {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.9);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        html { scroll-behavior: smooth; }
+        button, a, [role="button"] { touch-action: manipulation; }
+    </style>
+</head>
+<body class="bg-black text-white antialiased overflow-x-hidden selection:bg-blue-500/30 selection:text-white">
+
+    <div id="loadingOverlay" class="fixed inset-0 z-[10001] bg-black flex items-center justify-center transition-opacity duration-500" aria-live="polite" aria-busy="true">
+        <div class="w-8 h-8 border border-white/10 border-t-blue-500 rounded-full animate-spin"></div>
+        <span class="sr-only">Loading content...</span>
+    </div>
+
+    <nav class="fixed top-6 right-6 z-50" role="navigation" aria-label="Main navigation">
+        <button id="menuBtn" type="button" class="apple-glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Toggle menu" aria-expanded="false" aria-controls="menuDropdown">
+            <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <div id="menuDropdown" class="absolute top-14 right-0 w-40 apple-glass-strong rounded-2xl p-1.5 opacity-0 invisible translate-y-2 scale-95 transition-all duration-300 origin-top-right shadow-2xl" role="menu" aria-hidden="true">
+            <a href="#portfolio" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
+                <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Projects
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
+                <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Contact
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden" aria-label="Hero">
+        <div class="hero-fallback absolute inset-0 z-0"></div>
+        <div class="absolute inset-0 z-0" aria-hidden="true">
+            <video src="https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/BG.mkv" class="hero-video-container" autoplay loop muted playsinline decoding="async" preload="metadata" title="Background video"></video>
+            <div class="absolute inset-0 bg-black/30 z-10"></div>
+        </div>
+        <div class="scroll-btn-container">
+            <button id="scrollBtn" type="button" class="scroll-btn" aria-label="Scroll down to projects">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12l-7 7-7-7"></path></svg>
+            </button>
+            <span class="scroll-label">Scroll</span>
+        </div>
+    </section>
+
+    <section id="portfolio" class="min-h-screen py-24 px-4 md:px-6 relative z-20 bg-black" aria-label="Portfolio">
+        <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16 reveal-item">
+            <p class="text-xs font-medium tracking-[0.3em] uppercase text-blue-400/70 mb-3">Selected Work</p>
+            <h2 class="text-4xl md:text-5xl font-light text-white/90 tracking-tight leading-tight">Featured Projects</h2>
+        </div>
+        <div id="filterContainer" class="max-w-7xl mx-auto flex flex-wrap justify-center gap-2 mb-10 reveal-item"></div>
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto" role="list"></div>
+    </section>
+
+    <button id="backToTop" type="button" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full apple-glass flex items-center justify-center hover:bg-white/10 transition-colors shadow-lg" aria-label="Back to top">
+        <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <div id="projectModal" class="fixed inset-0 z-[100] opacity-0 invisible modal-instant" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+        <div id="modalBackdrop" class="absolute inset-0 bg-black/80 cursor-pointer"></div>
+        <button id="modalClose" type="button" class="fixed top-6 right-6 z-[102] w-10 h-10 rounded-full apple-glass flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Close project details">
+            <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="relative z-[101] w-full min-h-full overflow-y-auto no-scrollbar flex items-center justify-center pt-24 pb-12 px-4 pointer-events-none">
+            <div id="modalContent" class="w-full max-w-4xl apple-glass-strong rounded-[2rem] p-8 md:p-10 opacity-0 modal-instant pointer-events-auto shadow-3xl" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        const projects = [
+            {
+                name: "Archviz - II",
+                year: "2025",
+                desc: "Photorealistic architectural visualization created in Unreal Engine 5 with real-time lighting and materials.",
+                tags: ["Archviz", "Realtime", "UE5"],
+                category: "Archviz",
+                duration: "1 month",
+                status: "Completed",
+                liveUrl: "#",
+                repoUrl: "#",
+                image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-3.jpg',
+                slides: ["Interior View", "Exterior View", "Lighting Study", "Material Detail", "Final Render"],
+                slideImages: [
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-1.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-2.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-3.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-4.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-5.jpg'
+                ]
+            },
+            {
+                name: "Vai - III",
+                year: "2024",
+                desc: "Character design project featuring detailed modeling, texturing, and rendering in a cinematic style.",
+                tags: ["Character design", "Realtime", "UE5"],
+                category: "Character design",
+                duration: "3 months",
+                status: "Completed",
+                liveUrl: "#",
+                repoUrl: "#",
+                image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
+                slides: ["Concept", "Blockout", "High Poly", "Low Poly", "Texturing", "Rigging", "Animation", "Final Render"],
+                slideImages: [
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-1.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-2.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-3.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-4.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-5.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-6.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-8.jpg'
+                ]
+            },
+            {
+                name: "Archviz - I",
+                year: "2023",
+                desc: "Architectural visualization project showcasing interior and exterior spaces with realistic materials.",
+                tags: ["Archviz", "Realtime", "UE4"],
+                category: "Archviz",
+                duration: "2 months",
+                status: "Completed",
+                liveUrl: "#",
+                repoUrl: "#",
+                image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-7.jpg',
+                slides: ["Floor Plan", "Exterior", "Interior 1", "Interior 2", "Detail Shot", "Lighting", "Final"],
+                slideImages: [
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-1.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-2.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-3.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-4.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-5.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-6.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-7.jpg'
+                ]
+            },
+            {
+                name: "Vai - I",
+                year: "2022",
+                desc: "Initial character design exploration focusing on form, silhouette, and basic texturing workflows.",
+                tags: ["Character design", "Render", "Maya"],
+                category: "Character design",
+                duration: "2 months",
+                status: "Completed",
+                liveUrl: "#",
+                repoUrl: "#",
+                image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-1.jpg',
+                slides: ["Concept Art", "Final Render"],
+                slideImages: [
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-1.jpg',
+                    'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-2.jpg'
+                ]
+            }
+        ];
+
+        const els = {
+            loading: document.getElementById('loadingOverlay'),
+            menuBtn: document.getElementById('menuBtn'),
+            menuDropdown: document.getElementById('menuDropdown'),
+            scrollBtn: document.getElementById('scrollBtn'),
+            grid: document.getElementById('projectsGrid'),
+            filterContainer: document.getElementById('filterContainer'),
+            portfolioSection: document.getElementById('portfolio'),
+            modal: document.getElementById('projectModal'),
+            modalBackdrop: document.getElementById('modalBackdrop'),
+            modalClose: document.getElementById('modalClose'),
+            modalContent: document.getElementById('modalContent'),
+            backToTop: document.getElementById('backToTop')
+        };
+
+        let currentProject = null;
+        let slideInterval = null;
+        let currentSlideIndex = 0;
+        let isMenuOpen = false;
+        let slideshowPaused = false;
+        let lastFocusedElement = null;
+        let activeFilter = 'all';
+        let isFilterAnimating = false;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        window.addEventListener('error', (e) => {
+            console.error('Portfolio error:', e.error);
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+        });
+
+        function createSVGIcon(iconType) {
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.classList.add('w-3.5', 'h-3.5');
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+            switch (iconType) {
+                case 'react':
+                    path.setAttribute('d', 'M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41');
+                    break;
+                case 'node':
+                    path.setAttribute('d', 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z');
+                    const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path2.setAttribute('d', 'M9 8h6m-6 4h6m-6 4h6');
+                    svg.appendChild(path);
+                    svg.appendChild(path2);
+                    return svg.outerHTML;
+                case 'stripe':
+                    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                    rect.setAttribute('x', '2');
+                    rect.setAttribute('y', '5');
+                    rect.setAttribute('width', '20');
+                    rect.setAttribute('height', '14');
+                    rect.setAttribute('rx', '2');
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    line.setAttribute('d', 'M6 12h12');
+                    svg.appendChild(path);
+                    svg.appendChild(rect);
+                    svg.appendChild(line);
+                    return svg.outerHTML;
+                case 'firebase':
+                    path.setAttribute('d', 'M12 2c0 0-6 5-6 11a6 6 0 0 0 12 0c0-6-6-11-6-11z');
+                    const path3 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path3.setAttribute('d', 'M12 18v4');
+                    svg.appendChild(path);
+                    svg.appendChild(path3);
+                    return svg.outerHTML;
+                case 'ml':
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', '12');
+                    circle.setAttribute('cy', '12');
+                    circle.setAttribute('r', '3');
+                    path.setAttribute('d', 'M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42');
+                    svg.appendChild(circle);
+                    svg.appendChild(path);
+                    return svg.outerHTML;
+                case 'figma':
+                    const path4 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path4.setAttribute('d', 'M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5zM12 2h3.5a3.5 3.5 0 1 1 0 7H12V2zm0 9.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0zM5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0zM5 12a3.5 3.5 0 0 1 3.5-3.5H12v7H8.5A3.5 3.5 0 0 1 5 12z');
+                    svg.appendChild(path4);
+                    return svg.outerHTML;
+                case 'illustrator':
+                    const path5 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path5.setAttribute('d', 'M12 19l7-7 3 3-7 7-3-3z');
+                    const path6 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path6.setAttribute('d', 'M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z');
+                    const path7 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path7.setAttribute('d', 'M2 2l7.586 7.586');
+                    const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle2.setAttribute('cx', '11');
+                    circle2.setAttribute('cy', '11');
+                    circle2.setAttribute('r', '2');
+                    svg.appendChild(path5);
+                    svg.appendChild(path6);
+                    svg.appendChild(path7);
+                    svg.appendChild(circle2);
+                    return svg.outerHTML;
+                case 'vue':
+                    const path8 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path8.setAttribute('d', 'M12 2L2 19h20L12 2z');
+                    const path9 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path9.setAttribute('d', 'M12 6l-5 8.66h10L12 6z');
+                    svg.appendChild(path);
+                    svg.appendChild(path8);
+                    svg.appendChild(path9);
+                    return svg.outerHTML;
+                case 'd3':
+                    const path10 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path10.setAttribute('d', 'M3 3v18h18');
+                    const path11 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path11.setAttribute('d', 'M18 17V9');
+                    const path12 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path12.setAttribute('d', 'M13 17V5');
+                    const path13 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path13.setAttribute('d', 'M8 17v-3');
+                    svg.appendChild(path10);
+                    svg.appendChild(path11);
+                    svg.appendChild(path12);
+                    svg.appendChild(path13);
+                    return svg.outerHTML;
+                case 'aws':
+                    const path14 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path14.setAttribute('d', 'M6 19h12a4 4 0 0 0 0-8h-1.5a3 3 0 0 0-2.8-2H11a3 3 0 0 0-2.8 2H7a4 4 0 0 0 0 8z');
+                    svg.appendChild(path14);
+                    return svg.outerHTML;
+                default:
+                    path.setAttribute('d', 'M9 9h6m-6 4h6m-6 4h6');
+            }
+
+            svg.appendChild(path);
+            return svg.outerHTML;
+        }
+
+        function escapeText(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.textContent;
+        }
+
+        function createTagElement(tagName) {
+            const tagEl = document.createElement('span');
+            tagEl.className = 'apple-tag';
+            const iconSpan = document.createElement('span');
+            iconSpan.innerHTML = createSVGIcon(tagName.toLowerCase());
+            const textSpan = document.createElement('span');
+            textSpan.textContent = tagName;
+            tagEl.appendChild(iconSpan);
+            tagEl.appendChild(textSpan);
+            return tagEl;
+        }
+
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    intersectionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+        function renderFilters() {
+            const allTags = [...new Set(projects.flatMap(p => p.tags))];
+
+            const allBtn = document.createElement('button');
+            allBtn.className = 'apple-tag filter-btn active-filter';
+            allBtn.setAttribute('data-filter', 'all');
+            allBtn.setAttribute('aria-pressed', 'true');
+            allBtn.textContent = 'All';
+            allBtn.addEventListener('click', () => filterProjects('all'));
+            allBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    filterProjects('all');
+                }
+            });
+            els.filterContainer.appendChild(allBtn);
+
+            allTags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'apple-tag filter-btn';
+                btn.setAttribute('data-filter', tag);
+                btn.setAttribute('aria-pressed', 'false');
+                btn.textContent = tag;
+                btn.addEventListener('click', () => filterProjects(tag));
+                btn.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        filterProjects(tag);
+                    }
+                });
+                els.filterContainer.appendChild(btn);
+            });
+
+            els.filterContainer.classList.add('reveal-item');
+            intersectionObserver.observe(els.filterContainer);
+        }
+
+        function filterProjects(filter) {
+            if (isFilterAnimating || activeFilter === filter) return;
+
+            isFilterAnimating = true;
+            activeFilter = filter;
+
+            const cards = document.querySelectorAll('.project-card');
+            const visibleCards = [];
+            const hiddenCards = [];
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active-filter');
+                    btn.setAttribute('aria-pressed', 'true');
+                } else {
+                    btn.classList.remove('active-filter');
+                    btn.setAttribute('aria-pressed', 'false');
+                }
+            });
+
+            cards.forEach(card => {
+                const index = parseInt(card.dataset.index);
+                const project = projects[index];
+                if (filter === 'all' || project.tags.includes(filter)) {
+                    visibleCards.push(card);
+                } else {
+                    hiddenCards.push(card);
+                }
+            });
+
+            cards.forEach(card => {
+                card.classList.add('is-filtering');
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(8px) scale(0.98)';
+            });
+
+            setTimeout(() => {
+                hiddenCards.forEach(card => {
+                    card.style.display = 'none';
+                });
+
+                visibleCards.forEach((card, i) => {
+                    card.style.display = '';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(16px) scale(0.98)';
+
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    }, i * 50);
+                });
+
+                const totalAnimationTime = 300 + (visibleCards.length * 50) + 200;
+                setTimeout(() => {
+                    cards.forEach(card => {
+                        card.classList.remove('is-filtering');
+                        card.style.opacity = '';
+                        card.style.transform = '';
+                    });
+                    isFilterAnimating = false;
+                }, totalAnimationTime);
+
+            }, 300);
+        }
+
+        function renderProjects() {
+            els.grid.innerHTML = '';
+            projects.forEach((project, index) => {
+                const article = document.createElement('article');
+                article.className = 'project-card group cursor-pointer reveal-item';
+                article.dataset.index = String(index);
+                article.tabIndex = 0;
+                article.role = 'listitem';
+                article.setAttribute('aria-label', 'View ' + escapeText(project.name) + ' project details');
+
+                const bgMedia = document.createElement('div');
+                bgMedia.className = 'absolute inset-0 z-0';
+
+                if (project.image) {
+                    const skeleton = document.createElement('div');
+                    skeleton.className = 'absolute inset-0 skeleton img-loading';
+                    bgMedia.appendChild(skeleton);
+
+                    const img = document.createElement('img');
+                    img.src = project.image;
+                    img.alt = escapeText(project.name) + ' thumbnail';
+                    img.className = 'project-card-image w-full h-full object-cover img-loading';
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+
+                    img.addEventListener('load', () => {
+                        img.classList.remove('img-loading');
+                        img.classList.add('img-loaded');
+                        skeleton.style.display = 'none';
+                    });
+                    img.addEventListener('error', () => {
+                        img.style.display = 'none';
+                        skeleton.style.display = 'none';
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'absolute inset-0 bg-gray-800 flex items-center justify-center';
+                        placeholder.setAttribute('role', 'img');
+                        placeholder.setAttribute('aria-label', escapeText(project.name) + ' - Image unavailable');
+                        const textEl = document.createElement('span');
+                        textEl.className = 'text-white/30 text-sm';
+                        textEl.textContent = 'Image unavailable';
+                        placeholder.appendChild(textEl);
+                        bgMedia.appendChild(placeholder);
+                    });
+                    bgMedia.appendChild(img);
+                }
+
+                const gradientOverlay = document.createElement('div');
+                gradientOverlay.className = 'absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent';
+                bgMedia.appendChild(gradientOverlay);
+
+                article.appendChild(bgMedia);
+
+                const content = document.createElement('div');
+                content.className = 'relative z-10 h-full flex flex-col justify-between p-6 md:p-8 project-card-content';
+
+                const yearBadge = createTagElement(project.year);
+                const titleWrapper = document.createElement('div');
+                titleWrapper.className = 'flex justify-between items-start mb-3 md:mb-4';
+                titleWrapper.appendChild(yearBadge);
+
+                const title = document.createElement('h3');
+                title.className = 'text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-tight mb-2 md:mb-3 tracking-tight';
+                title.textContent = project.name;
+
+                const description = document.createElement('p');
+                description.className = 'text-xs md:text-sm text-white/60 line-clamp-2 max-w-md mb-4 md:mb-6 leading-relaxed';
+                description.textContent = project.desc || '';
+
+                const tagsContainer = document.createElement('div');
+                tagsContainer.className = 'flex flex-wrap gap-2';
+                project.tags.forEach(tag => tagsContainer.appendChild(createTagElement(tag)));
+
+                content.append(titleWrapper, title, description, tagsContainer);
+                article.appendChild(content);
+                els.grid.appendChild(article);
+
+                intersectionObserver.observe(article);
+
+                article.addEventListener('click', () => openProject(parseInt(article.dataset.index)));
+
+                article.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openProject(parseInt(article.dataset.index));
+                    }
+                });
+            });
+        }
+
+        function updateSlideVisuals(index) {
+            document.querySelectorAll('.slide-item').forEach(s => s.classList.add('opacity-0'));
+            document.querySelectorAll('.slide-dot').forEach(d => {
+                d.classList.remove('w-6', 'bg-white', 'shadow-lg');
+            });
+            const slide = document.querySelector('.slide-item[data-slide="' + index + '"]');
+            const dot = document.querySelector('.slide-dot[data-slide="' + index + '"]');
+            if (slide) slide.classList.remove('opacity-0');
+            if (dot) {
+                dot.classList.add('w-6', 'bg-white', 'shadow-lg');
+                dot.setAttribute('aria-pressed', 'true');
+            }
+            document.querySelectorAll('.slide-dot').forEach((d, i) => {
+                if (i !== index) d.setAttribute('aria-pressed', 'false');
+            });
+        }
+
+        function openProject(index) {
+            currentProject = projects[index];
+            currentSlideIndex = 0;
+            slideshowPaused = false;
+            lastFocusedElement = document.activeElement;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'mb-6';
+
+            const titleEl = document.createElement('h2');
+            titleEl.id = 'modalTitle';
+            titleEl.className = 'text-3xl md:text-4xl font-light text-white mb-2 tracking-tight';
+            titleEl.textContent = currentProject.name;
+
+            const descEl = document.createElement('p');
+            descEl.className = 'text-white/50 text-base';
+            descEl.textContent = currentProject.desc || '';
+
+            wrapper.append(titleEl, descEl);
+
+            const tagsContainer = document.createElement('div');
+            tagsContainer.className = 'flex flex-wrap gap-2 mb-8';
+            currentProject.tags.forEach(tag => tagsContainer.appendChild(createTagElement(tag)));
+
+            const metaGrid = document.createElement('div');
+            metaGrid.className = 'grid grid-cols-2 gap-4 mb-8 p-6 apple-glass rounded-2xl';
+
+            const metaItems = [
+                { label: 'Year', value: currentProject.year },
+                { label: 'Category', value: currentProject.category || '-' },
+                { label: 'Duration', value: currentProject.duration || '-' },
+                { label: 'Status', value: currentProject.status || '-' }
+            ];
+
+            metaItems.forEach(item => {
+                const metaEl = document.createElement('div');
+                metaEl.innerHTML = '<p class="text-white/40 text-xs uppercase tracking-wider mb-1">' + item.label + '</p><p class="text-white/90 font-medium">' + escapeText(item.value) + '</p>';
+                metaGrid.appendChild(metaEl);
+            });
+
+            const slideshowWrapper = document.createElement('div');
+            slideshowWrapper.className = 'relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-black mb-6';
+
+            currentProject.slides.forEach((slide, i) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'absolute inset-0 opacity-0 transition-opacity duration-500 slide-item';
+                slideDiv.dataset.slide = String(i);
+
+                const img = document.createElement('img');
+                img.src = currentProject.slideImages[i];
+                img.alt = escapeText(slide) || ('Slide ' + (i + 1));
+                img.className = 'w-full h-full object-cover';
+                img.loading = i === 0 ? 'eager' : 'lazy';
+                img.decoding = 'async';
+
+                img.addEventListener('error', () => {
+                    img.style.display = 'none';
+                    const fallback = document.createElement('div');
+                    fallback.className = 'absolute inset-0 bg-gray-900 flex items-center justify-center';
+                    fallback.innerHTML = '<span class="text-white/30 text-sm">Image unavailable</span>';
+                    slideDiv.appendChild(fallback);
+                });
+
+                slideDiv.appendChild(img);
+                slideshowWrapper.appendChild(slideDiv);
+            });
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'flex justify-center gap-2 mt-6';
+
+            currentProject.slides.forEach((slide, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'w-2 h-2 rounded-full bg-white/30 border border-white/10 hover:bg-white/50 transition-all cursor-pointer slide-dot' + (i === 0 ? ' w-6 bg-white shadow-lg' : '');
+                dot.dataset.slide = String(i);
+                dot.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + escapeText(slide || ('Slide ' + (i + 1))));
+                dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+
+                dot.addEventListener('click', () => {
+                    currentSlideIndex = i;
+                    updateSlideVisuals(i);
+                    slideshowPaused = false;
+                    restartSlideshow();
+                });
+
+                dot.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        currentSlideIndex = i;
+                        updateSlideVisuals(i);
+                        slideshowPaused = false;
+                        restartSlideshow();
+                    }
+                });
+
+                dotsContainer.appendChild(dot);
+            });
+
+            els.modalContent.innerHTML = '';
+            els.modalContent.append(wrapper, tagsContainer, metaGrid, slideshowWrapper, dotsContainer);
+
+            els.modal.setAttribute('aria-labelledby', 'modalTitle');
+
+            els.modal.classList.remove('invisible', 'opacity-0');
+            els.modalContent.classList.remove('opacity-0');
+            els.modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            requestAnimationFrame(() => {
+                els.modalClose.focus();
+            });
+
+            function trapFocus(element) {
+                const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                element.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
+                    }
+                });
+            }
+            trapFocus(els.modalContent);
+
+            slideshowWrapper.addEventListener('mouseenter', () => { slideshowPaused = true; });
+            slideshowWrapper.addEventListener('mouseleave', () => { slideshowPaused = false; });
+
+            const firstSlide = document.querySelector('.slide-item[data-slide="0"]');
+            if (firstSlide) firstSlide.classList.remove('opacity-0');
+
+            startSlideshow();
+        }
+
+        function closeProject() {
+            els.modal.classList.add('opacity-0');
+            els.modalContent.classList.add('opacity-0');
+            setTimeout(() => {
+                els.modal.classList.add('invisible');
+                els.modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                stopSlideshow();
+                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
+            }, 200);
+        }
+
+        function startSlideshow() {
+            if (prefersReducedMotion) return;
+            stopSlideshow();
+            slideInterval = setInterval(() => {
+                if (!slideshowPaused) {
+                    const nextIndex = (currentSlideIndex + 1) % currentProject.slides.length;
+                    updateSlideVisuals(nextIndex);
+                    currentSlideIndex = nextIndex;
+                }
+            }, 4000);
+        }
+
+        function restartSlideshow() { startSlideshow(); }
+
+        function stopSlideshow() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+        }
+
+        if (els.menuBtn && els.menuDropdown) {
+            els.menuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    els.menuDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2', 'scale-95');
+                    els.menuDropdown.setAttribute('aria-hidden', 'false');
+                    els.menuBtn.setAttribute('aria-expanded', 'true');
+                    setTimeout(() => {
+                        const firstLink = els.menuDropdown.querySelector('a');
+                        if (firstLink) firstLink.focus();
+                    }, 100);
+                } else closeMenu();
+            });
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !els.menuBtn.contains(e.target) && !els.menuDropdown.contains(e.target)) closeMenu();
+            });
+            els.menuDropdown.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') { closeMenu(); els.menuBtn.focus(); return; }
+
+                const items = Array.from(els.menuDropdown.querySelectorAll('[role="menuitem"]'));
+                const currentIndex = items.indexOf(document.activeElement);
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (items[(currentIndex + 1) % items.length]) items[(currentIndex + 1) % items.length].focus();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (items[(currentIndex - 1 + items.length) % items.length]) items[(currentIndex - 1 + items.length) % items.length].focus();
+                }
+            });
+        }
+
+        function closeMenu() {
+            isMenuOpen = false;
+            els.menuDropdown.classList.add('opacity-0', 'invisible', 'translate-y-2', 'scale-95');
+            els.menuDropdown.setAttribute('aria-hidden', 'true');
+            els.menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        if (els.scrollBtn) {
+            els.scrollBtn.addEventListener('click', () => {
+                const portfolio = document.getElementById('portfolio');
+                if (portfolio) {
+                    portfolio.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                }
+            });
+        }
+
+        if (els.backToTop) {
+            const portfolioSection = document.getElementById('portfolio');
+
+            window.addEventListener('scroll', () => {
+                if (portfolioSection) {
+                    const portfolioTop = portfolioSection.offsetTop;
+                    if (window.scrollY > portfolioTop - 200) {
+                        els.backToTop.classList.add('visible');
+                    } else {
+                        els.backToTop.classList.remove('visible');
+                    }
+                }
+            }, { passive: true });
+
+            els.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            });
+        }
+
+        if (els.modalClose && els.modalBackdrop) {
+            els.modalClose.addEventListener('click', closeProject);
+            els.modalBackdrop.addEventListener('click', closeProject);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !els.modal.classList.contains('invisible')) closeProject();
+        });
+
+        const contentReady = new Promise(resolve => {
+            if (document.readyState === 'complete') resolve();
+            else window.addEventListener('load', resolve);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderProjects();
+
+            document.querySelectorAll('.reveal-item').forEach(item => {
+                intersectionObserver.observe(item);
+            });
+
+            if (els.portfolioSection) {
+                sectionObserver.observe(els.portfolioSection);
+            }
+
+            const minDisplay = 300;
+            const readyTime = Date.now();
+
+            contentReady.then(() => {
+                const remaining = Math.max(0, minDisplay - (Date.now() - readyTime));
+                setTimeout(() => {
+                    els.loading.classList.add('opacity-0');
+                    setTimeout(() => els.loading.classList.add('hidden'), 500);
+                }, remaining);
+            });
+        });
+
+        const heroVideo = document.querySelector('.hero-video-container video');
+        if (heroVideo) heroVideo.addEventListener('error', () => {
+            const fallback = document.querySelector('.hero-fallback');
+            if (fallback) fallback.style.display = 'block';
+        });
+
+        window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+            if (e.matches) stopSlideshow();
+            else if (currentProject) startSlideshow();
+        });
+    </script>
+</body>
+</html>
