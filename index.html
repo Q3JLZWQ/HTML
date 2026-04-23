@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https://github.com https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://raw.githubusercontent.com; frame-src https://www.youtube.com https://player.vimeo.com; connect-src 'self';">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <title>Q3JLZWQ</title>
-    <link rel="icon" type="image/webp" href="https://raw.githubusercontent.com/Q3JLZWQ/HTML/main/Logo-60-WEBP.webp">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Logo-FAV.png">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230a0a0a' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='60'%3E🎨%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,9 +75,11 @@
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 24px rgba(0, 0, 0, 0.2);
             }
             .apple-glass-strong {
-                background: #0a0a0a;
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4);
+                background: rgba(10, 10, 10, 0.85);
+                backdrop-filter: saturate(180%) blur(24px);
+                -webkit-backdrop-filter: saturate(180%) blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.4);
             }
             .no-scrollbar::-webkit-scrollbar { display: none; }
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -159,7 +161,7 @@
             }
             .scroll-btn-container {
                 position: absolute;
-                top: 55%;
+                top: 62%;
                 left: 50%;
                 transform: translateX(-50%);
                 display: flex;
@@ -258,23 +260,80 @@
             }
             .hero-video-container {
                 position: absolute;
-                top: 0; left: 0; width: 100%; height: 100%;
-                overflow: hidden;
-                z-index: 0;
-            }
-            .hero-video-container video {
-                position: absolute;
-                top: 50%; left: 50%;
-                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
                 min-width: 100%;
                 min-height: 100%;
                 width: auto;
                 height: auto;
+                transform: translate(-50%, -50%);
                 object-fit: cover;
                 pointer-events: none;
             }
             .modal-instant {
                 transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .menu-icon {
+                transition: opacity 0.25s ease, transform 0.25s ease;
+            }
+            .hamburger-svg { opacity: 1; transform: scale(1); }
+            .close-svg { 
+                position: absolute; 
+                opacity: 0; 
+                transform: scale(0.8);
+            }
+            .menu-btn.active .hamburger-svg {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            .menu-btn.active .close-svg {
+                opacity: 1;
+                transform: scale(1);
+            }
+            .slider-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                backdrop-filter: saturate(180%) blur(20px);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(0, 0, 0, 0.2);
+            }
+            .slider-arrow:hover {
+                background: rgba(255, 255, 255, 0.14);
+                border-color: rgba(255, 255, 255, 0.22);
+                transform: translateY(-50%) scale(1.08);
+            }
+            .slider-arrow:active {
+                transform: translateY(-50%) scale(0.96);
+            }
+            .slider-arrow svg {
+                width: 20px;
+                height: 20px;
+                stroke: rgba(255, 255, 255, 0.75);
+                stroke-width: 1.5;
+                fill: none;
+                pointer-events: none;
+            }
+            .slider-wrapper:hover .slider-arrow {
+                opacity: 1;
+            }
+            .slider-arrow--prev { left: 16px; }
+            .slider-arrow--next { right: 16px; }
+            .slider-arrow[disabled] {
+                pointer-events: none;
+                opacity: 0 !important;
             }
         }
         @media (hover: hover) {
@@ -316,8 +375,15 @@
     </div>
 
     <nav class="fixed top-6 right-6 z-50" role="navigation" aria-label="Main navigation">
-        <button id="menuBtn" type="button" class="apple-glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Toggle menu" aria-expanded="false" aria-controls="menuDropdown">
-            <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <button id="menuBtn" type="button" class="menu-btn apple-glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors relative" aria-label="Toggle menu" aria-expanded="false" aria-controls="menuDropdown">
+            <svg class="w-5 h-5 text-white/80 menu-icon hamburger-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 18h16"></path>
+            </svg>
+            <svg class="w-5 h-5 text-white/80 menu-icon close-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
         </button>
         <div id="menuDropdown" class="absolute top-14 right-0 w-40 apple-glass-strong rounded-2xl p-1.5 opacity-0 invisible translate-y-2 scale-95 transition-all duration-300 origin-top-right shadow-2xl" role="menu" aria-hidden="true">
             <a href="#portfolio" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
@@ -834,6 +900,29 @@
             document.querySelectorAll('.slide-dot').forEach((d, i) => {
                 if (i !== index) d.setAttribute('aria-pressed', 'false');
             });
+
+            const prevBtn = document.getElementById('sliderArrowPrev');
+            const nextBtn = document.getElementById('sliderArrowNext');
+            if (prevBtn && currentProject) {
+                prevBtn.disabled = index === 0;
+            }
+            if (nextBtn && currentProject) {
+                nextBtn.disabled = index === currentProject.slides.length - 1;
+            }
+        }
+
+        function navigateSlide(direction) {
+            if (!currentProject) return;
+            const newIndex = direction === 'prev'
+                ? Math.max(0, currentSlideIndex - 1)
+                : Math.min(currentProject.slides.length - 1, currentSlideIndex + 1);
+
+            if (newIndex !== currentSlideIndex) {
+                currentSlideIndex = newIndex;
+                updateSlideVisuals(newIndex);
+                slideshowPaused = false;
+                restartSlideshow();
+            }
         }
 
         function openProject(index) {
@@ -877,7 +966,31 @@
             });
 
             const slideshowWrapper = document.createElement('div');
-            slideshowWrapper.className = 'relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-black mb-6';
+            slideshowWrapper.className = 'slider-wrapper relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-black mb-6 group';
+
+            const prevBtn = document.createElement('button');
+            prevBtn.type = 'button';
+            prevBtn.id = 'sliderArrowPrev';
+            prevBtn.className = 'slider-arrow slider-arrow--prev';
+            prevBtn.setAttribute('aria-label', 'Previous slide');
+            prevBtn.innerHTML = '<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>';
+            prevBtn.addEventListener('click', () => navigateSlide('prev'));
+            prevBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateSlide('prev'); }
+            });
+            slideshowWrapper.appendChild(prevBtn);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.type = 'button';
+            nextBtn.id = 'sliderArrowNext';
+            nextBtn.className = 'slider-arrow slider-arrow--next';
+            nextBtn.setAttribute('aria-label', 'Next slide');
+            nextBtn.innerHTML = '<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>';
+            nextBtn.addEventListener('click', () => navigateSlide('next'));
+            nextBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateSlide('next'); }
+            });
+            slideshowWrapper.appendChild(nextBtn);
 
             currentProject.slides.forEach((slide, i) => {
                 const slideDiv = document.createElement('div');
@@ -973,6 +1086,8 @@
             const firstSlide = document.querySelector('.slide-item[data-slide="0"]');
             if (firstSlide) firstSlide.classList.remove('opacity-0');
 
+            prevBtn.disabled = true;
+
             startSlideshow();
         }
 
@@ -1012,7 +1127,9 @@
         if (els.menuBtn && els.menuDropdown) {
             els.menuBtn.addEventListener('click', () => {
                 isMenuOpen = !isMenuOpen;
+                
                 if (isMenuOpen) {
+                    els.menuBtn.classList.add('active');
                     els.menuDropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2', 'scale-95');
                     els.menuDropdown.setAttribute('aria-hidden', 'false');
                     els.menuBtn.setAttribute('aria-expanded', 'true');
@@ -1020,13 +1137,28 @@
                         const firstLink = els.menuDropdown.querySelector('a');
                         if (firstLink) firstLink.focus();
                     }, 100);
-                } else closeMenu();
+                } else {
+                    els.menuBtn.classList.remove('active');
+                    closeMenu();
+                }
             });
+            
             document.addEventListener('click', (e) => {
-                if (isMenuOpen && !els.menuBtn.contains(e.target) && !els.menuDropdown.contains(e.target)) closeMenu();
+                if (isMenuOpen && !els.menuBtn.contains(e.target) && !els.menuDropdown.contains(e.target)) {
+                    if (isMenuOpen) {
+                        els.menuBtn.classList.remove('active');
+                        closeMenu();
+                    }
+                }
             });
+            
             els.menuDropdown.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') { closeMenu(); els.menuBtn.focus(); return; }
+                if (e.key === 'Escape') { 
+                    els.menuBtn.classList.remove('active');
+                    closeMenu(); 
+                    els.menuBtn.focus(); 
+                    return; 
+                }
 
                 const items = Array.from(els.menuDropdown.querySelectorAll('[role="menuitem"]'));
                 const currentIndex = items.indexOf(document.activeElement);
@@ -1045,7 +1177,10 @@
                     const targetId = link.getAttribute('href');
                     if (targetId && targetId.startsWith('#')) {
                         e.preventDefault();
-                        closeMenu();
+                        if (isMenuOpen) {
+                            els.menuBtn.classList.remove('active');
+                            closeMenu();
+                        }
                         const targetEl = document.getElementById(targetId.slice(1));
                         if (targetEl) {
                             setTimeout(() => {
