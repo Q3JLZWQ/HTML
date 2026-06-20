@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" class="reduce-motion">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative Developer Portfolio - Showcasing digital experiences and interactive projects">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=()">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https://github.com https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://raw.githubusercontent.com; frame-src https://www.youtube.com https://player.vimeo.com; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https://github.com https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://raw.githubusercontent.com; frame-src https://www.youtube.com https://player.vimeo.com; connect-src 'self';">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <title>Q3JLZWQ</title>
-    <link rel="icon" type="image/png" href="/img/logo-fav.png">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Logo-FAV.png">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230a0a0a' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='60'%3ENOTES%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://github.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.youtube.com">
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" type="font/woff2" crossorigin="anonymous" fetchpriority="high">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional" integrity="sha384-..." crossorigin="anonymous">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" crossorigin="anonymous"></script>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -250,9 +248,6 @@
                 opacity: 0;
                 transform: translateY(30px);
                 transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-                /* Performance: content-visibility for off-screen sections */
-                content-visibility: auto;
-                contain-intrinsic-size: 0 1200px;
             }
             #portfolio.section-visible {
                 opacity: 1;
@@ -297,8 +292,6 @@
                 z-index: 10;
                 width: 44px;
                 height: 44px;
-                min-width: 44px;
-                min-height: 44px;
                 border-radius: 50%;
                 background: rgba(255, 255, 255, 0.06);
                 border: 1px solid rgba(255, 255, 255, 0.1);
@@ -356,57 +349,6 @@
             #modalContent {
                 padding-bottom: max(32px, calc(env(safe-area-inset-bottom, 0px) + 16px));
             }
-
-            /* UI/UX: Improved focus visibility for touch devices */
-            @media not (hover: hover) {
-                :focus-visible {
-                    outline-color: rgba(255, 255, 255, 0.9);
-                }
-            }
-
-            /* UI/UX: prefers-color-scheme support */
-            @media (prefers-color-scheme: light) {
-                .apple-glass {
-                    background: rgba(0, 0, 0, 0.04);
-                    border: 1px solid rgba(0, 0, 0, 0.08);
-                    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.05), 0 4px 24px rgba(0, 0, 0, 0.1);
-                }
-                .apple-glass-strong {
-                    background: #ffffff;
-                    border: 1px solid rgba(0, 0, 0, 0.15);
-                    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.05), 0 8px 32px rgba(0, 0, 0, 0.1);
-                }
-                .project-card {
-                    background: #ffffff;
-                    border-color: rgba(0, 0, 0, 0.06);
-                    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.05), 0 4px 20px rgba(0, 0, 0, 0.1);
-                }
-                .project-card:hover {
-                    background: #f5f5f5;
-                    border-color: rgba(0, 0, 0, 0.12);
-                }
-                .apple-tag {
-                    background: rgba(0, 0, 0, 0.06);
-                    border-color: rgba(0, 0, 0, 0.1);
-                    color: rgba(0, 0, 0, 0.6);
-                }
-                .apple-tag:hover {
-                    background: rgba(0, 0, 0, 0.12);
-                    border-color: rgba(0, 0, 0, 0.2);
-                    color: rgba(0, 0, 0, 0.9);
-                }
-                .scroll-btn {
-                    background: rgba(0, 0, 0, 0.06);
-                    border-color: rgba(0, 0, 0, 0.1);
-                }
-                .scroll-btn:hover {
-                    background: rgba(0, 0, 0, 0.12);
-                    border-color: rgba(0, 0, 0, 0.2);
-                }
-                .scroll-btn svg { stroke: rgba(0, 0, 0, 0.7); }
-                .scroll-btn::before,
-                .scroll-btn::after { border-color: rgba(0, 0, 0, 0.15); }
-            }
         }
         @media (hover: hover) {
             .project-card:hover {
@@ -441,8 +383,7 @@
 </head>
 <body class="bg-black text-white antialiased overflow-x-hidden selection:bg-blue-500/30 selection:text-white">
 
-    <a href="#portfolio" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 rounded-lg z-[100]">Skip to main content</a>
-    <div id="loadingOverlay" class="fixed inset-0 z-[10001] bg-black flex items-center justify-center transition-opacity duration-500" role="status" aria-live="polite" aria-busy="true">
+    <div id="loadingOverlay" class="fixed inset-0 z-[10001] bg-black flex items-center justify-center transition-opacity duration-500" aria-live="polite" aria-busy="true">
         <div class="w-8 h-8 border border-white/10 border-t-blue-500 rounded-full animate-spin"></div>
         <span class="sr-only">Loading content...</span>
     </div>
@@ -462,7 +403,7 @@
             <a href="#portfolio" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
                 <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>Projects
             </a>
-            <a href="mailto:contact@q3jlzwq.com" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
+            <a href="mailto:you@example.com" class="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white hover:bg-white/10 rounded-xl transition-colors" role="menuitem" tabindex="-1">
                 <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>Contact
             </a>
         </div>
@@ -490,7 +431,6 @@
             <h2 class="text-4xl md:text-5xl font-light text-white/90 tracking-tight leading-tight">Projects</h2>
         </div>
         <div id="filterContainer" class="max-w-7xl mx-auto flex flex-wrap justify-center gap-2 mb-10 reveal-item"></div>
-        <div id="filterResults" class="sr-only" aria-live="polite" aria-atomic="true"></div>
         <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto" role="list"></div>
     </section>
 
@@ -609,8 +549,7 @@
             modalBackdrop: document.getElementById('modalBackdrop'),
             modalClose: document.getElementById('modalClose'),
             modalContent: document.getElementById('modalContent'),
-            backToTop: document.getElementById('backToTop'),
-            filterResults: document.getElementById('filterResults')
+            backToTop: document.getElementById('backToTop')
         };
 
         let currentProject = null;
@@ -816,11 +755,6 @@
             isFilterAnimating = true;
             activeFilter = filter;
 
-            // UI/UX: Add loading state to filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.add('opacity-50', 'pointer-events-none');
-            });
-
             const cards = document.querySelectorAll('.project-card');
             const visibleCards = [];
             const hiddenCards = [];
@@ -829,12 +763,9 @@
                 if (btn.dataset.filter === filter) {
                     btn.classList.add('active-filter');
                     btn.setAttribute('aria-pressed', 'true');
-                    // UI/UX: Add aria-current to active filter
-                    btn.setAttribute('aria-current', 'true');
                 } else {
                     btn.classList.remove('active-filter');
                     btn.setAttribute('aria-pressed', 'false');
-                    btn.removeAttribute('aria-current');
                 }
             });
 
@@ -877,16 +808,6 @@
                         card.style.opacity = '';
                         card.style.transform = '';
                     });
-
-                    // UI/UX: Remove loading state from filter buttons
-                    document.querySelectorAll('.filter-btn').forEach(btn => {
-                        btn.classList.remove('opacity-50', 'pointer-events-none');
-                    });
-
-                    // UI/UX: Announce filter results via ARIA live region
-                    const count = visibleCards.length;
-                    els.filterResults.textContent = `${count} project${count !== 1 ? 's' : ''} shown`;
-
                     isFilterAnimating = false;
                 }, totalAnimationTime);
 
@@ -903,15 +824,6 @@
                 article.role = 'listitem';
                 article.setAttribute('aria-label', 'View ' + escapeText(project.name) + ' project details');
 
-                // UI/UX: Add aria-describedby for screen readers
-                const descId = 'project-desc-' + index;
-                const hiddenDesc = document.createElement('span');
-                hiddenDesc.id = descId;
-                hiddenDesc.className = 'sr-only';
-                hiddenDesc.textContent = project.desc || '';
-                article.appendChild(hiddenDesc);
-                article.setAttribute('aria-describedby', descId);
-
                 const bgMedia = document.createElement('div');
                 bgMedia.className = 'absolute inset-0 z-0';
 
@@ -924,8 +836,6 @@
                     img.src = project.image;
                     img.alt = escapeText(project.name) + ' thumbnail';
                     img.className = 'project-card-image w-full h-full object-cover img-loading';
-                    // Performance: Add sizes attribute for responsive image loading
-                    img.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
                     img.loading = 'lazy';
                     img.decoding = 'async';
 
@@ -1076,12 +986,11 @@
             const slideshowWrapper = document.createElement('div');
             slideshowWrapper.className = 'slider-wrapper relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 bg-black mb-6 group';
 
-            // UI/UX: Improved aria-label for slideshow navigation with slide titles
             const prevBtn = document.createElement('button');
             prevBtn.type = 'button';
             prevBtn.id = 'sliderArrowPrev';
             prevBtn.className = 'slider-arrow slider-arrow--prev';
-            prevBtn.setAttribute('aria-label', 'Previous slide: ' + (currentProject.slides[currentSlideIndex - 1] || currentProject.slides[currentProject.slides.length - 1]));
+            prevBtn.setAttribute('aria-label', 'Previous slide');
             prevBtn.innerHTML = '<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>';
             prevBtn.addEventListener('click', () => navigateSlide('prev'));
             prevBtn.addEventListener('keydown', (e) => {
@@ -1093,7 +1002,7 @@
             nextBtn.type = 'button';
             nextBtn.id = 'sliderArrowNext';
             nextBtn.className = 'slider-arrow slider-arrow--next';
-            nextBtn.setAttribute('aria-label', 'Next slide: ' + (currentProject.slides[currentSlideIndex + 1] || currentProject.slides[0]));
+            nextBtn.setAttribute('aria-label', 'Next slide');
             nextBtn.innerHTML = '<svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>';
             nextBtn.addEventListener('click', () => navigateSlide('next'));
             nextBtn.addEventListener('keydown', (e) => {
@@ -1110,8 +1019,6 @@
                 img.src = currentProject.slideImages[i];
                 img.alt = escapeText(slide) || ('Slide ' + (i + 1));
                 img.className = 'w-full h-full object-cover';
-                // Performance: Add sizes attribute for responsive image loading in slides
-                img.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw';
                 img.loading = i === 0 ? 'eager' : 'lazy';
                 img.decoding = 'async';
 
@@ -1133,10 +1040,7 @@
             currentProject.slides.forEach((slide, i) => {
                 const dot = document.createElement('button');
                 dot.type = 'button';
-                dot.className = 'w-2 h-2 rounded-full bg-white/30 border border-white/10 hover:bg-white/50 transition-all cursor-pointer slide-dot';
-                // UI/UX: Improve touch target for dots
-                dot.style.minWidth = '16px';
-                dot.style.minHeight = '16px';
+                dot.className = 'w-2 h-2 rounded-full bg-white/30 border border-white/10 hover:bg-white/50 transition-all cursor-pointer slide-dot' + (i === 0 ? ' w-6 bg-white shadow-lg' : '');
                 dot.dataset.slide = String(i);
                 dot.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + escapeText(slide || ('Slide ' + (i + 1))));
                 dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
@@ -1169,10 +1073,7 @@
             els.modal.classList.remove('invisible', 'opacity-0');
             els.modalContent.classList.remove('opacity-0');
             els.modal.setAttribute('aria-hidden', 'false');
-
-            // UI/UX: Use overscroll-behavior instead of overflow: hidden for modal
-            document.documentElement.style.overflow = 'hidden';
-            document.body.style.overscrollBehavior = 'contain';
+            document.body.style.overflow = 'hidden';
 
             requestAnimationFrame(() => {
                 els.modalClose.focus();
@@ -1214,11 +1115,7 @@
             setTimeout(() => {
                 els.modal.classList.add('invisible');
                 els.modal.setAttribute('aria-hidden', 'true');
-
-                // UI/UX: Restore scroll behavior on close
-                document.documentElement.style.overflow = '';
-                document.body.style.overscrollBehavior = '';
-
+                document.body.style.overflow = '';
                 stopSlideshow();
                 if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
             }, 200);
