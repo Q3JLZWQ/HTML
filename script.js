@@ -25,7 +25,6 @@ const projects = [
         category: "Character design",
         duration: "3 months",
         status: "Completed",
-        repoUrl: "https://github.com/example/repo", // Example updated to show functionality
         image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
         slides: ["Concept", "Blockout", "High Poly", "Low Poly", "Texturing", "Rigging", "Animation", "Final Render"],
         slideImages: [
