@@ -7,8 +7,6 @@ const projects = [
         category: "Archviz",
         duration: "1 month",
         status: "Completed",
-        liveUrl: "https://example.com/demo", // Example updated to show functionality
-        repoUrl: "#",
         image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-3.jpg',
         slides: ["Interior View", "Exterior View", "Lighting Study", "Material Detail", "Final Render"],
         slideImages: [
@@ -27,7 +25,6 @@ const projects = [
         category: "Character design",
         duration: "3 months",
         status: "Completed",
-        liveUrl: "#",
         repoUrl: "https://github.com/example/repo", // Example updated to show functionality
         image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
         slides: ["Concept", "Blockout", "High Poly", "Low Poly", "Texturing", "Rigging", "Animation", "Final Render"],
@@ -50,8 +47,6 @@ const projects = [
         category: "Archviz",
         duration: "2 months",
         status: "Completed",
-        liveUrl: "#",
-        repoUrl: "#",
         image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-7.jpg',
         slides: ["Floor Plan", "Exterior", "Interior 1", "Interior 2", "Detail Shot", "Lighting", "Final"],
         slideImages: [
@@ -72,8 +67,6 @@ const projects = [
         category: "Character design",
         duration: "2 months",
         status: "Completed",
-        liveUrl: "#",
-        repoUrl: "#",
         image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-1.jpg',
         slides: ["Concept Art", "Final Render"],
         slideImages: [
