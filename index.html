@@ -3,6 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative Developer Portfolio - Showcasing digital experiences and interactive projects">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https://github.com https://raw.githubusercontent.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://raw.githubusercontent.com; frame-src https://www.youtube.com https://player.vimeo.com; connect-src 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <title>Q3JLZWQ</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Logo-FAV.png">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230a0a0a' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='60'%3ENOTES%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://github.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=optional">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true">
+        <div class="spinner"></div>
+        <span class="sr-only">Loading content...</span>
+    </div>
+
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <button id="menuBtn" type="button" class="menu-btn apple-glass" aria-label="Toggle menu" aria-expanded="false" aria-controls="menuDropdown">
+            <svg class="menu-icon hamburger-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 18h16"></path>
+            </svg>
+            <svg class="menu-icon close-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div id="menuDropdown" class="menu-dropdown apple-glass-strong invisible opacity-0" role="menu" aria-hidden="true">
+            <a href="#portfolio" class="menu-link" role="menuitem" tabindex="-1">
+                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                Projects
+            </a>
+            <a href="mailto:contact@q3jlzwq.com" class="menu-link" role="menuitem" tabindex="-1">
+                <svg class="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                Contact
+            </a>
+        </div>
+    </nav>
+
+    <section class="hero-section" aria-label="Hero" id="heroSection">
+        <div class="hero-fallback"></div>
+        <div class="hero-video-wrapper" aria-hidden="true">
+            <video class="hero-video-container" autoplay loop muted playsinline webkit-playsinline decoding="async" preload="auto" poster="https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/BG-poster.jpg" title="Background video">
+                <source src="BG.webm" type="video/webm">
+                <source src="BG.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="scroll-btn-container">
+            <button id="scrollBtn" type="button" class="scroll-btn" aria-label="Scroll down to projects">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12l-7 7-7-7"></path></svg>
+            </button>
+            <span class="scroll-label">Scroll</span>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section-padding portfolio-section" aria-label="Portfolio">
+        <div class="container section-header reveal-item">
+            <h2 class="section-title">Projects</h2>
+        </div>
+        <div id="filterContainer" class="filters-wrapper reveal-item"></div>
+        <div id="projectsGrid" class="container projects-grid" role="list"></div>
+    </section>
+
+    <button id="backToTop" type="button" class="back-to-top apple-glass" aria-label="Back to top">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <div id="projectModal" class="modal-wrapper opacity-0 invisible modal-instant" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+        <div id="modalBackdrop" class="modal-overlay-bg"></div>
+        <button id="modalClose" type="button" class="modal-close-btn apple-glass" aria-label="Close project details">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="modal-content-container no-scrollbar">
+            <div id="modalContent" class="modal-card apple-glass-strong opacity-0 modal-instant" aria-live="polite">
+                
+                <div class="modal-header">
+                    <h2 id="modalTitle" class="modal-title"></h2>
+                    <p id="modalDesc" class="modal-desc"></p>
+                </div>
+                
+                <div id="modalActions" class="modal-actions"></div>
+                <div id="modalTags" class="tags-container" style="margin-bottom: 2rem;"></div>
+                <div id="modalMeta" class="meta-grid apple-glass"></div>
+                
+                <div id="modalSlideshow" class="slider-wrapper group">
+                    <button type="button" id="sliderArrowPrev" class="slider-arrow slider-arrow--prev" aria-label="Previous slide">
+                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button type="button" id="sliderArrowNext" class="slider-arrow slider-arrow--next" aria-label="Next slide">
+                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="modalSlides"></div>
+                </div>
+                
+                <div id="modalDots" class="dots-container"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="referrer" content="strict-origin-when-cross-origin">
