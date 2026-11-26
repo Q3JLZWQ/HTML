@@ -1,684 +1,939 @@
-const projects = [
-    {
-        name: "Archviz - II",
-        year: "2025",
-        desc: "Photorealistic architectural visualization created in Unreal Engine 5 with real-time lighting and materials.",
-        tags: ["Archviz", "Realtime", "UE5"],
-        category: "Archviz",
-        duration: "1 month",
-        status: "Completed",
-        image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-3.jpg',
-        slides: ["Interior View", "Exterior View", "Lighting Study", "Material Detail", "Final Render"],
-        slideImages: [
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-1.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-2.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-3.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-4.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-II-5.jpg'
-        ]
+/**
+ * Portfolio Application Module (script.js)
+ * Strict-CSP compliant: zero inline style mutations, zero innerHTML injection.
+ */
+
+/* ==========================================================================
+   1. Self-Contained Preview Artwork Helper & Portfolio Dataset
+   ========================================================================== */
+
+/**
+ * Generates crisp SVG data-URI artwork so cards and slides render immediately
+ * under `img-src 'self' data:` before you swap in local .webp/.webm assets.
+ */
+function createPreviewSvg(label, subtitle, accentStart, accentEnd) {
+  const svg = [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800">`,
+    `<defs>`,
+    `<linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">`,
+    `<stop offset="0%" stop-color="${accentStart}"/>`,
+    `<stop offset="100%" stop-color="${accentEnd}"/>`,
+    `</linearGradient>`,
+    `<radialGradient id="r" cx="75%" cy="25%" r="65%">`,
+    `<stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>`,
+    `<stop offset="100%" stop-color="#000000" stop-opacity="0"/>`,
+    `</radialGradient>`,
+    `</defs>`,
+    `<rect width="1280" height="800" fill="#09090d"/>`,
+    `<rect width="1280" height="800" fill="url(#g)" opacity="0.42"/>`,
+    `<rect width="1280" height="800" fill="url(#r)"/>`,
+    `<circle cx="980" cy="240" r="220" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>`,
+    `<circle cx="980" cy="240" r="310" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1.5"/>`,
+    `<text x="88" y="640" fill="#f5f5f7" font-family="Inter, system-ui, sans-serif" font-size="54" font-weight="700" letter-spacing="-1.5">${label}</text>`,
+    `<text x="88" y="696" fill="#f5f5f7" fill-opacity="0.72" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="400">${subtitle}</text>`,
+    `</svg>`
+  ].join("");
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+const PROJECTS = [
+  {
+    id: "aether-fluid-synth",
+    title: "Aether Fluid Synth",
+    category: "WebGL & 3D",
+    year: "2026",
+    summary: "GPU-accelerated Navier-Stokes fluid surface driven by Web Audio harmonics.",
+    description:
+      "An interactive audiovisual instrument built with custom GLSL fragment shaders and the Web Audio API. Pointer velocity injects vorticity and dye momentum into a half-float framebuffer pipeline while real-time FFT spectrum analysis modulates surface refraction at 120 fps.",
+    thumbnail: {
+      src: createPreviewSvg("Aether Fluid Synth", "GLSL Navier-Stokes + Web Audio", "#3b82f6", "#0f172a"),
+      alt: "Iridescent blue fluid simulation preview for Aether Fluid Synth"
     },
-    {
-        name: "Vai - III",
-        year: "2024",
-        desc: "Character design project featuring detailed modeling, texturing, and rendering in a cinematic style.",
-        tags: ["Character design", "Realtime", "UE5"],
-        category: "Character design",
-        duration: "3 months",
-        status: "Completed",
-        image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
-        slides: ["Concept", "Blockout", "High Poly", "Low Poly", "Texturing", "Rigging", "Animation", "Final Render"],
-        slideImages: [
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-1.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-2.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-3.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-4.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-5.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-6.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-7.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-III-8.jpg'
-        ]
+    meta: {
+      Role: "Creative Technologist",
+      Year: "2026",
+      Client: "R&D Lab",
+      Performance: "120 fps WebGL2"
     },
-    {
-        name: "Archviz - I",
-        year: "2023",
-        desc: "Architectural visualization project showcasing interior and exterior spaces with realistic materials.",
-        tags: ["Archviz", "Realtime", "UE4"],
-        category: "Archviz",
-        duration: "2 months",
-        status: "Completed",
-        image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-7.jpg',
-        slides: ["Floor Plan", "Exterior", "Interior 1", "Interior 2", "Detail Shot", "Lighting", "Final"],
-        slideImages: [
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-1.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-2.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-3.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-4.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-5.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-6.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Archviz-I-7.jpg'
-        ]
+    tags: ["WebGL2", "GLSL", "Web Audio API", "TypeScript", "Shader Pipeline"],
+    links: [
+      { label: "Launch Experience", url: "https://github.com/Q3JLZWQ", primary: true },
+      { label: "Source Code", url: "https://github.com/Q3JLZWQ", primary: false }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Vorticity Pass", "Multi-pass FBO advection & bloom", "#2563eb", "#090d16"),
+        alt: "Vorticity advection render pass visualization"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / Spectral Coupling", "FFT frequency bins mapped to surface normals", "#06b6d4", "#1e1b4b"),
+        alt: "Audio spectrum reactive surface normals diagram"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("03 / Mobile Fallback", "Adaptive half-resolution render scaling", "#4f46e5", "#09090b"),
+        alt: "Adaptive resolution profiler view on mobile devices"
+      }
+    ]
+  },
+  {
+    id: "kinetix-design-os",
+    title: "Kinetix Design OS",
+    category: "Design Systems",
+    year: "2026",
+    summary: "Zero-runtime token engine and accessible motion primitives for multi-brand apps.",
+    description:
+      "Architected a framework-agnostic component and motion library powering 14 product surfaces. Combines CSS custom property themes, spring-physics micro-interactions, automated WCAG contrast verification, and strict Content-Security-Policy compatibility.",
+    thumbnail: {
+      src: createPreviewSvg("Kinetix Design OS", "Accessible Motion & Token Architecture", "#ec4899", "#1f122b"),
+      alt: "Component token grid preview for Kinetix Design OS"
     },
-    {
-        name: "Vai - I",
-        year: "2022",
-        desc: "Initial character design exploration focusing on form, silhouette, and basic texturing workflows.",
-        tags: ["Character design", "Render", "Maya"],
-        category: "Character design",
-        duration: "2 months",
-        status: "Completed",
-        image: 'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-1.jpg',
-        slides: ["Concept Art", "Final Render"],
-        slideImages: [
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-1.jpg',
-            'https://raw.githubusercontent.com/Q3JLZWQ/HTML/refs/heads/main/Vai-I-2.jpg'
-        ]
-    }
+    meta: {
+      Role: "Lead Design Engineer",
+      Year: "2026",
+      Client: "Kinetix Cloud",
+      Bundle: "4.2 kB gzipped"
+    },
+    tags: ["CSS Architecture", "Web Components", "ARIA", "Design Tokens", "WCAG 2.2 AA"],
+    links: [
+      { label: "Documentation", url: "https://github.com/Q3JLZWQ", primary: true },
+      { label: "GitHub Repo", url: "https://github.com/Q3JLZWQ", primary: false }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Token Graph", "Semantic color & elevation tokens across themes", "#db2777", "#18181b"),
+        alt: "Semantic design token dependency graph"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / Native Primitives", "Top-layer dialogs, popovers & roving focus", "#9333ea", "#0f172a"),
+        alt: "Interactive accessible dialog and toolbar primitives"
+      }
+    ]
+  },
+  {
+    id: "solstice-spatial-atlas",
+    title: "Solstice Spatial Atlas",
+    category: "WebGL & 3D",
+    year: "2025",
+    summary: "Real-time planetary irradiance and orbital telemetry explorer in Three.js.",
+    description:
+      "Visualizes satellite telemetry and solar angle data across global terrain tiles using instanced geometries and atmospheric Rayleigh/Mie scattering shaders. Engineered custom Web Worker geometry decoders to keep main-thread frame times under 4 ms.",
+    thumbnail: {
+      src: createPreviewSvg("Solstice Spatial Atlas", "Atmospheric Scattering & Orbital Telemetry", "#f59e0b", "#1c1917"),
+      alt: "Atmospheric horizon shader preview for Solstice Spatial Atlas"
+    },
+    meta: {
+      Role: "3D Web Developer",
+      Year: "2025",
+      Client: "Solstice Earth",
+      Architecture: "Three.js + Workers"
+    },
+    tags: ["Three.js", "Web Workers", "Custom Shaders", "GeoJSON", "InstancedMesh"],
+    links: [
+      { label: "Explore Atlas", url: "https://github.com/Q3JLZWQ", primary: true }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Atmospheric Limb", "Rayleigh & Mie optical depth shader", "#d97706", "#0c0a09"),
+        alt: "Planetary limb scattering shader closeup"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / Worker Decoding", "Off-thread terrain mesh quantization", "#ea580c", "#18181b"),
+        alt: "Web Worker telemetry stream pipeline"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("03 / Telemetry HUD", "High-contrast SVG data overlays", "#ca8a04", "#09090b"),
+        alt: "Orbital inclination HUD overlay"
+      }
+    ]
+  },
+  {
+    id: "pulse-modular-sequencer",
+    title: "Pulse Euclidean Sequencer",
+    category: "Generative Audio",
+    year: "2025",
+    summary: "Browser-based polyrhythmic step sequencer with sample-accurate AudioWorklet clock.",
+    description:
+      "Solves browser timer drift by running a dedicated DSP clock inside an AudioWorklet thread, paired with concentric SVG rhythm rings rendered at 60 fps. Supports Web MIDI hardware output, Euclidean pattern distribution, and shareable URL state.",
+    thumbnail: {
+      src: createPreviewSvg("Pulse Sequencer", "AudioWorklet DSP & Web MIDI", "#10b981", "#06241c"),
+      alt: "Concentric Euclidean rhythm rings for Pulse Sequencer"
+    },
+    meta: {
+      Role: "Creator & Developer",
+      Year: "2025",
+      Client: "Open Source",
+      Latency: "Sub-3ms AudioWorklet"
+    },
+    tags: ["AudioWorklet", "Web MIDI", "SVG Animation", "Euclidean Rhythms", "PWA"],
+    links: [
+      { label: "Play Synth", url: "https://github.com/Q3JLZWQ", primary: true },
+      { label: "Source Code", url: "https://github.com/Q3JLZWQ", primary: false }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Euclidean Rings", "Interactive polyrhythmic step geometry", "#059669", "#090d16"),
+        alt: "Concentric polyrhythmic ring interface"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / MIDI Routing", "External hardware clock & CC mapping", "#14b8a6", "#0f172a"),
+        alt: "Web MIDI hardware routing matrix"
+      }
+    ]
+  },
+  {
+    id: "prism-editorial-engine",
+    title: "Prism Scrollytelling Engine",
+    category: "Interactive UI",
+    year: "2025",
+    summary: "Scroll-driven visual essays using native CSS view timelines and zero layout thrashing.",
+    description:
+      "Built an editorial publishing toolkit for data journalism teams thatchoreographs typography, sticky canvas diagrams, and progressive image reveals using native IntersectionObserver thresholds and hardware-accelerated transforms.",
+    thumbnail: {
+      src: createPreviewSvg("Prism Editorial Engine", "Zero-Jank Scrollytelling Toolkit", "#8b5cf6", "#170f2e"),
+      alt: "Editorial scrollytelling layout preview for Prism"
+    },
+    meta: {
+      Role: "Frontend Architect",
+      Year: "2025",
+      Client: "Prism Media",
+      CoreWebVitals: "99 Lighthouse Perf"
+    },
+    tags: ["Scroll Choreography", "Canvas 2D", "IntersectionObserver", "Typography"],
+    links: [
+      { label: "Read Case Study", url: "https://github.com/Q3JLZWQ", primary: true }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Sticky Stage", "Viewport-locked canvas transitions", "#7c3aed", "#09090b"),
+        alt: "Sticky viewport stage diagram"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / Reduced Motion", "Instant crossfade fallback mode", "#6366f1", "#111827"),
+        alt: "Accessible reduced-motion step view"
+      }
+    ]
+  },
+  {
+    id: "verve-commerce-canvas",
+    title: "Verve Spatial Lookbook",
+    category: "Interactive UI",
+    year: "2024",
+    summary: "Infinite 2D pan-and-zoom editorial canvas with physics inertia and instant filtering.",
+    description:
+      "Reimagined seasonal fashion lookbooks as a tactile 2D spatial canvas supporting trackpad pinch-zoom, pointer momentum, keyboard grid navigation, and instant FLIP layout transitions into structured product detail sheets.",
+    thumbnail: {
+      src: createPreviewSvg("Verve Spatial Lookbook", "2D Inertia Canvas & FLIP Transitions", "#f43f5e", "#260b14"),
+      alt: "Spatial canvas lookbook grid for Verve"
+    },
+    meta: {
+      Role: "Creative Developer",
+      Year: "2024",
+      Client: "Verve Studio",
+      Interaction: "Pointer Events + FLIP"
+    },
+    tags: ["Pointer Events", "Spring Physics", "Spatial UI", "Accessibility"],
+    links: [
+      { label: "Live Demo", url: "https://github.com/Q3JLZWQ", primary: true }
+    ],
+    slides: [
+      {
+        type: "image",
+        src: createPreviewSvg("01 / Freeform Canvas", "60fps inertial panning & spatial clustering", "#e11d48", "#09090b"),
+        alt: "Spatial clustering lookbook overview"
+      },
+      {
+        type: "image",
+        src: createPreviewSvg("02 / Detail Sheet", "Seamless modal transition & keyboard support", "#fb7185", "#18181b"),
+        alt: "Accessible detail sheet view"
+      }
+    ]
+  }
 ];
 
-// DOM Element Cache
-const els = {
-    loading: document.getElementById('loadingOverlay'),
-    menuBtn: document.getElementById('menuBtn'),
-    menuDropdown: document.getElementById('menuDropdown'),
-    scrollBtn: document.getElementById('scrollBtn'),
-    heroSection: document.getElementById('heroSection'),
-    grid: document.getElementById('projectsGrid'),
-    filterContainer: document.getElementById('filterContainer'),
-    portfolioSection: document.getElementById('portfolio'),
-    
-    // Modal Cache
-    modal: document.getElementById('projectModal'),
-    modalBackdrop: document.getElementById('modalBackdrop'),
-    modalClose: document.getElementById('modalClose'),
-    modalContent: document.getElementById('modalContent'),
-    modalTitle: document.getElementById('modalTitle'),
-    modalDesc: document.getElementById('modalDesc'),
-    modalActions: document.getElementById('modalActions'),
-    modalTags: document.getElementById('modalTags'),
-    modalMeta: document.getElementById('modalMeta'),
-    modalSlideshow: document.getElementById('modalSlideshow'),
-    modalSlides: document.getElementById('modalSlides'),
-    modalDots: document.getElementById('modalDots'),
-    sliderPrev: document.getElementById('sliderArrowPrev'),
-    sliderNext: document.getElementById('sliderArrowNext'),
-    
-    backToTop: document.getElementById('backToTop')
+/* ==========================================================================
+   2. Application State & DOM Cache
+   ========================================================================== */
+
+const state = {
+  activeCategory: "All",
+  activeProject: null,
+  activeSlideIndex: 0,
+  lastFocusedTrigger: null,
+  swipeStartX: null
 };
 
-let currentProject = null;
-let slideInterval = null;
-let currentSlideIndex = 0;
-let isMenuOpen = false;
-let slideshowPaused = false;
-let lastFocusedElement = null;
-let activeFilter = 'all';
-let isFilterAnimating = false;
-let touchStartX = 0;
+const dom = {
+  loadingOverlay: document.getElementById("loadingOverlay"),
+  menuBtn: document.getElementById("menuBtn"),
+  menuDropdown: document.getElementById("menuDropdown"),
+  heroSection: document.getElementById("heroSection"),
+  heroVideo: document.querySelector(".hero-video-container"),
+  scrollBtn: document.getElementById("scrollBtn"),
+  portfolioSection: document.getElementById("portfolio"),
+  filterContainer: document.getElementById("filterContainer"),
+  projectsGrid: document.getElementById("projectsGrid"),
+  backToTop: document.getElementById("backToTop"),
+  projectModal: document.getElementById("projectModal"),
+  modalContent: document.getElementById("modalContent"),
+  modalClose: document.getElementById("modalClose"),
+  modalTitle: document.getElementById("modalTitle"),
+  modalActions: document.getElementById("modalActions"),
+  modalSlideshow: document.getElementById("modalSlideshow"),
+  sliderArrowPrev: document.getElementById("sliderArrowPrev"),
+  sliderArrowNext: document.getElementById("sliderArrowNext"),
+  modalSlides: document.getElementById("modalSlides"),
+  modalDots: document.getElementById("modalDots"),
+  modalDesc: document.getElementById("modalDesc"),
+  modalMeta: document.getElementById("modalMeta"),
+  modalTags: document.getElementById("modalTags")
+};
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const desktopNavQuery = window.matchMedia("(min-width: 768px)");
 
-window.addEventListener('error', (e) => console.error('Portfolio error:', e.error));
-window.addEventListener('unhandledrejection', (e) => console.error('Unhandled promise rejection:', e.reason));
+/* ==========================================================================
+   3. Safe DOM & URL Utilities
+   ========================================================================== */
 
-function createSVGIcon(iconType) {
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 24 24');
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('style', 'width: 14px; height: 14px;');
+/**
+ * Creates a DOM element safely without innerHTML or inline styles.
+ */
+function createEl(tag, options = {}, children = []) {
+  const node = document.createElement(tag);
 
-    switch (iconType) {
-        case 'archviz':
-            svg.innerHTML = '<path d="M3 21h18"></path><path d="M4 20V9l5-6 5 6v11h4a1 1 0 0 1 1 1v2"></path><path d="M9 20V14h6v6"></path>';
-            return svg.outerHTML;
-        case 'realtime':
-            svg.innerHTML = '<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>';
-            return svg.outerHTML;
-        case 'ue5':
-        case 'ue4':
-            svg.innerHTML = '<rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>';
-            return svg.outerHTML;
-        case 'character design':
-            svg.innerHTML = '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>';
-            return svg.outerHTML;
-        case 'render':
-            svg.innerHTML = '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle>';
-            return svg.outerHTML;
-        case 'maya':
-            svg.innerHTML = '<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.27 6.96L12 12.01l8.73-5.05"></path><path d="M12 22.08V12"></path>';
-            return svg.outerHTML;
-        default:
-            svg.innerHTML = '<rect x="4" y="4" width="16" height="16" rx="2"></rect>';
-            return svg.outerHTML;
+  if (options.className) node.className = options.className;
+  if (options.text !== undefined) node.textContent = options.text;
+  if (options.attrs) {
+    for (const [key, value] of Object.entries(options.attrs)) {
+      if (value !== undefined && value !== null) {
+        node.setAttribute(key, String(value));
+      }
     }
+  }
+
+  for (const child of children) {
+    if (child) node.append(child);
+  }
+
+  return node;
 }
 
-function escapeText(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.textContent;
+/**
+ * Validates external action links and media sources against safe protocols.
+ */
+function sanitizeUrl(rawUrl, allowedIframeHosts = null) {
+  if (typeof rawUrl !== "string" || !rawUrl.trim()) return null;
+
+  if (rawUrl.startsWith("data:image/svg+xml;")) {
+    return allowedIframeHosts ? null : rawUrl;
+  }
+
+  try {
+    const parsed = new URL(rawUrl, window.location.origin);
+
+    if (allowedIframeHosts) {
+      return parsed.protocol === "https:" && allowedIframeHosts.includes(parsed.hostname)
+        ? parsed.href
+        : null;
+    }
+
+    if (parsed.origin === window.location.origin) return parsed.href;
+    if (parsed.protocol === "https:" || parsed.protocol === "mailto:") return parsed.href;
+  } catch {
+    return null;
+  }
+
+  return null;
 }
 
-function createTagElement(tagName) {
-    const tagEl = document.createElement('span');
-    tagEl.className = 'apple-tag';
-    const iconSpan = document.createElement('span');
-    iconSpan.innerHTML = createSVGIcon(tagName.toLowerCase());
-    const textSpan = document.createElement('span');
-    textSpan.textContent = tagName;
-    tagEl.appendChild(iconSpan);
-    tagEl.appendChild(textSpan);
-    return tagEl;
+function getScrollBehavior() {
+  return reducedMotionQuery.matches ? "auto" : "smooth";
 }
 
-const intersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            intersectionObserver.unobserve(entry.target);
-        }
+/* ==========================================================================
+   4. Hero Video & Viewport Observers
+   ========================================================================== */
+
+function syncHeroVideoPlayback(isIntersecting = true) {
+  if (!dom.heroVideo) return;
+
+  if (reducedMotionQuery.matches || !isIntersecting || dom.projectModal?.open) {
+    dom.heroVideo.pause();
+    return;
+  }
+
+  const playPromise = dom.heroVideo.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      /* Autoplay prevented by browser power-saving or user policy; poster remains visible */
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  }
+}
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+function initHeroAndScrollObservers() {
+  if (!dom.heroSection) return;
+
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      const [entry] = entries;
+      if (!entry) return;
+
+      syncHeroVideoPlayback(entry.isIntersecting);
+
+      // Show Back-to-Top button only after scrolling past the hero section
+      if (dom.backToTop) {
+        dom.backToTop.hidden = entry.isIntersecting;
+      }
+    },
+    { threshold: 0.1 }
+  );
+
+  heroObserver.observe(dom.heroSection);
+
+  reducedMotionQuery.addEventListener("change", () => {
+    syncHeroVideoPlayback(true);
+  });
+}
+
+function observeRevealItems(elements) {
+  if (!elements.length) return;
+
+  if (reducedMotionQuery.matches || !("IntersectionObserver" in window)) {
+    elements.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      for (const entry of entries) {
         if (entry.isIntersecting) {
-            entry.target.classList.add('section-visible');
-            sectionObserver.unobserve(entry.target);
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         }
+      }
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  elements.forEach((item) => revealObserver.observe(item));
+}
+
+/* ==========================================================================
+   5. Navigation & Smooth Scroll Controls
+   ========================================================================== */
+
+function setMobileMenuOpen(isOpen, restoreFocus = false) {
+  if (!dom.menuBtn || !dom.menuDropdown) return;
+
+  dom.menuBtn.setAttribute("aria-expanded", String(isOpen));
+  dom.menuDropdown.hidden = !isOpen;
+
+  if (!isOpen && restoreFocus) {
+    dom.menuBtn.focus();
+  }
+}
+
+function initNavigation() {
+  if (dom.menuBtn && dom.menuDropdown) {
+    dom.menuBtn.addEventListener("click", () => {
+      const isExpanded = dom.menuBtn.getAttribute("aria-expanded") === "true";
+      setMobileMenuOpen(!isExpanded);
     });
-}, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+    dom.menuDropdown.addEventListener("click", (event) => {
+      if (event.target.closest("a") && !desktopNavQuery.matches) {
+        setMobileMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const isExpanded = dom.menuBtn.getAttribute("aria-expanded") === "true";
+      if (!isExpanded || desktopNavQuery.matches) return;
+
+      if (!dom.menuDropdown.contains(event.target) && !dom.menuBtn.contains(event.target)) {
+        setMobileMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && dom.menuBtn.getAttribute("aria-expanded") === "true") {
+        setMobileMenuOpen(false, true);
+      }
+    });
+
+    desktopNavQuery.addEventListener("change", (event) => {
+      if (event.matches) {
+        setMobileMenuOpen(false);
+      }
+    });
+  }
+
+  dom.scrollBtn?.addEventListener("click", () => {
+    dom.portfolioSection?.scrollIntoView({ behavior: getScrollBehavior() });
+  });
+
+  dom.backToTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: getScrollBehavior() });
+  });
+}
+
+/* ==========================================================================
+   6. Category Filter Toolbar & Project Grid Rendering
+   ========================================================================== */
+
+function getCategories() {
+  const unique = new Set(PROJECTS.map((project) => project.category));
+  return ["All", ...unique];
+}
 
 function renderFilters() {
-    const allTags = [...new Set(projects.flatMap(p => p.tags))];
+  if (!dom.filterContainer) return;
 
-    const allBtn = document.createElement('button');
-    allBtn.className = 'apple-tag filter-btn active-filter';
-    allBtn.setAttribute('data-filter', 'all');
-    allBtn.setAttribute('aria-pressed', 'true');
-    allBtn.textContent = 'All';
-    allBtn.addEventListener('click', () => filterProjects('all'));
-    els.filterContainer.appendChild(allBtn);
+  const categories = getCategories();
+  dom.filterContainer.replaceChildren();
 
-    allTags.forEach(tag => {
-        const btn = document.createElement('button');
-        btn.className = 'apple-tag filter-btn';
-        btn.setAttribute('data-filter', tag);
-        btn.setAttribute('aria-pressed', 'false');
-        btn.textContent = tag;
-        btn.addEventListener('click', () => filterProjects(tag));
-        els.filterContainer.appendChild(btn);
+  categories.forEach((category, index) => {
+    const isSelected = category === state.activeCategory;
+    const button = createEl("button", {
+      className: `filter-btn apple-glass${isSelected ? " is-active" : ""}`,
+      text: category,
+      attrs: {
+        type: "button",
+        "aria-pressed": String(isSelected),
+        tabindex: index === 0 ? "0" : "-1",
+        "data-category": category
+      }
     });
 
-    els.filterContainer.classList.add('reveal-item');
-    intersectionObserver.observe(els.filterContainer);
+    button.addEventListener("click", () => {
+      if (state.activeCategory === category) return;
+      state.activeCategory = category;
+      updateFilterSelection(category);
+      renderProjectsGrid();
+    });
+
+    dom.filterContainer.append(button);
+  });
+
+  // Roving tabindex keyboard support for role="toolbar"
+  dom.filterContainer.addEventListener("keydown", (event) => {
+    const buttons = Array.from(dom.filterContainer.querySelectorAll(".filter-btn"));
+    const currentIndex = buttons.indexOf(document.activeElement);
+    if (currentIndex === -1) return;
+
+    let nextIndex = -1;
+    if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % buttons.length;
+    if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    if (event.key === "Home") nextIndex = 0;
+    if (event.key === "End") nextIndex = buttons.length - 1;
+
+    if (nextIndex !== -1) {
+      event.preventDefault();
+      buttons.forEach((btn, idx) => btn.setAttribute("tabindex", idx === nextIndex ? "0" : "-1"));
+      buttons[nextIndex].focus();
+    }
+  });
 }
 
-function filterProjects(filter) {
-    if (isFilterAnimating || activeFilter === filter) return;
+function updateFilterSelection(selectedCategory) {
+  if (!dom.filterContainer) return;
 
-    isFilterAnimating = true;
-    activeFilter = filter;
+  const buttons = dom.filterContainer.querySelectorAll(".filter-btn");
+  buttons.forEach((btn) => {
+    const isMatch = btn.dataset.category === selectedCategory;
+    btn.classList.toggle("is-active", isMatch);
+    btn.setAttribute("aria-pressed", String(isMatch));
+  });
+}
 
-    const cards = document.querySelectorAll('.project-card');
-    const visibleCards = [];
-    const hiddenCards = [];
+function createProjectCard(project) {
+  const safeThumb = sanitizeUrl(project.thumbnail?.src) || "";
+  const image = createEl("img", {
+    className: "project-card__image",
+    attrs: {
+      src: safeThumb,
+      alt: project.thumbnail?.alt || `${project.title} preview`,
+      loading: "lazy",
+      decoding: "async",
+      width: "640",
+      height: "400"
+    }
+  });
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        if (btn.dataset.filter === filter) {
-            btn.classList.add('active-filter');
-            btn.setAttribute('aria-pressed', 'true');
-        } else {
-            btn.classList.remove('active-filter');
-            btn.setAttribute('aria-pressed', 'false');
+  const mediaWrap = createEl("div", { className: "project-card__media" }, [image]);
+
+  const metaLine = createEl("div", { className: "project-card__eyebrow" }, [
+    createEl("span", { text: project.category }),
+    createEl("span", { attrs: { "aria-hidden": "true" }, text: "·" }),
+    createEl("span", { text: project.year })
+  ]);
+
+  const title = createEl("h3", {
+    className: "project-card__title",
+    text: project.title
+  });
+
+  const summary = createEl("p", {
+    className: "project-card__summary",
+    text: project.summary
+  });
+
+  const tagPreview = createEl(
+    "ul",
+    { className: "project-card__tags", attrs: { "aria-label": "Technologies" } },
+    project.tags.slice(0, 3).map((tag) =>
+      createEl("li", { className: "tag-pill", text: tag })
+    )
+  );
+
+  const body = createEl("div", { className: "project-card__body" }, [
+    metaLine,
+    title,
+    summary,
+    tagPreview
+  ]);
+
+  const triggerBtn = createEl(
+    "button",
+    {
+      className: "project-card__trigger",
+      attrs: {
+        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-label": `Open project details for ${project.title}`
+      }
+    },
+    [mediaWrap, body]
+  );
+
+  triggerBtn.addEventListener("click", () => {
+    openProjectModal(project, triggerBtn);
+  });
+
+  return createEl("article", { className: "project-card apple-glass reveal-item" }, [triggerBtn]);
+}
+
+function renderProjectsGrid() {
+  if (!dom.projectsGrid) return;
+
+  const filtered =
+    state.activeCategory === "All"
+      ? PROJECTS
+      : PROJECTS.filter((project) => project.category === state.activeCategory);
+
+  dom.projectsGrid.replaceChildren();
+
+  if (!filtered.length) {
+    dom.projectsGrid.append(
+      createEl("p", {
+        className: "empty-state",
+        text: "No projects match this category yet."
+      })
+    );
+    return;
+  }
+
+  const cards = filtered.map((project) => createProjectCard(project));
+  dom.projectsGrid.append(...cards);
+  observeRevealItems(cards);
+}
+
+/* ==========================================================================
+   7. Native Dialog Modal & Accessible Media Slideshow
+   ========================================================================== */
+
+function buildSlideElement(slide, index, projectTitle) {
+  const wrapper = createEl("div", {
+    className: "slide-item",
+    attrs: {
+      role: "group",
+      "aria-roledescription": "slide",
+      "aria-label": `Slide ${index + 1}`
+    }
+  });
+  wrapper.hidden = index !== 0;
+
+  if (slide.type === "video") {
+    const safeVideo = sanitizeUrl(slide.src);
+    if (safeVideo) {
+      const video = createEl("video", {
+        className: "slide-media",
+        attrs: {
+          src: safeVideo,
+          controls: "",
+          playsinline: "",
+          preload: "metadata",
+          ...(sanitizeUrl(slide.poster) ? { poster: sanitizeUrl(slide.poster) } : {})
         }
-    });
+      });
+      wrapper.append(video);
+      return wrapper;
+    }
+  }
 
-    cards.forEach(card => {
-        const index = parseInt(card.dataset.index);
-        const project = projects[index];
-        if (filter === 'all' || project.tags.includes(filter)) {
-            visibleCards.push(card);
-        } else {
-            hiddenCards.push(card);
+  if (slide.type === "youtube" || slide.type === "vimeo") {
+    const safeEmbed = sanitizeUrl(slide.src, [
+      "www.youtube-nocookie.com",
+      "www.youtube.com",
+      "player.vimeo.com"
+    ]);
+    if (safeEmbed) {
+      const iframe = createEl("iframe", {
+        className: "slide-media",
+        attrs: {
+          src: safeEmbed,
+          title: slide.title || `${projectTitle} video demonstration`,
+          loading: "lazy",
+          allow: "fullscreen; picture-in-picture",
+          referrerpolicy: "strict-origin-when-cross-origin"
         }
+      });
+      wrapper.append(iframe);
+      return wrapper;
+    }
+  }
+
+  const safeImg = sanitizeUrl(slide.src) || "";
+  const img = createEl("img", {
+    className: "slide-media",
+    attrs: {
+      src: safeImg,
+      alt: slide.alt || `${projectTitle} slide ${index + 1}`,
+      decoding: "async"
+    }
+  });
+  wrapper.append(img);
+  return wrapper;
+}
+
+function pauseInactiveSlideMedia() {
+  if (!dom.modalSlides) return;
+
+  dom.modalSlides.querySelectorAll("video").forEach((video) => video.pause());
+  dom.modalSlides.querySelectorAll("iframe").forEach((iframe) => {
+    const parentSlide = iframe.closest(".slide-item");
+    if (parentSlide?.hidden) {
+      const currentSrc = iframe.getAttribute("src");
+      if (currentSrc) iframe.setAttribute("src", currentSrc);
+    }
+  });
+}
+
+function setActiveSlide(targetIndex) {
+  const slides = state.activeProject?.slides || [];
+  if (!slides.length || !dom.modalSlides) return;
+
+  const total = slides.length;
+  state.activeSlideIndex = ((targetIndex % total) + total) % total;
+
+  const slideNodes = Array.from(dom.modalSlides.children);
+  slideNodes.forEach((node, idx) => {
+    node.hidden = idx !== state.activeSlideIndex;
+  });
+
+  pauseInactiveSlideMedia();
+
+  if (dom.modalDots) {
+    Array.from(dom.modalDots.children).forEach((dot, idx) => {
+      const isCurrent = idx === state.activeSlideIndex;
+      dot.classList.toggle("is-active", isCurrent);
+      dot.setAttribute("aria-current", isCurrent ? "true" : "false");
     });
+  }
+}
 
-    cards.forEach(card => {
-        card.classList.add('is-filtering');
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(8px) scale(0.98)';
+function populateModalContent(project) {
+  if (dom.modalTitle) dom.modalTitle.textContent = project.title;
+  if (dom.modalDesc) dom.modalDesc.textContent = project.description;
+
+  // Action buttons
+  if (dom.modalActions) {
+    dom.modalActions.replaceChildren();
+    (project.links || []).forEach((link) => {
+      const safeHref = sanitizeUrl(link.url);
+      if (!safeHref) return;
+
+      const anchor = createEl("a", {
+        className: `action-btn ${link.primary ? "action-btn--primary" : "action-btn--ghost"}`,
+        text: link.label,
+        attrs: {
+          href: safeHref,
+          target: "_blank",
+          rel: "noopener noreferrer"
+        }
+      });
+      dom.modalActions.append(anchor);
     });
+  }
 
-    setTimeout(() => {
-        hiddenCards.forEach(card => card.style.display = 'none');
+  // Metadata grid
+  if (dom.modalMeta) {
+    dom.modalMeta.replaceChildren();
+    for (const [label, value] of Object.entries(project.meta || {})) {
+      const item = createEl("div", { className: "meta-item" }, [
+        createEl("span", { className: "meta-item__label", text: label }),
+        createEl("strong", { className: "meta-item__value", text: value })
+      ]);
+      dom.modalMeta.append(item);
+    }
+  }
 
-        visibleCards.forEach((card, i) => {
-            card.style.display = '';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(16px) scale(0.98)';
+  // Tags
+  if (dom.modalTags) {
+    dom.modalTags.replaceChildren();
+    (project.tags || []).forEach((tag) => {
+      dom.modalTags.append(createEl("span", { className: "tag-pill", text: tag }));
+    });
+  }
 
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0) scale(1)';
-            }, i * 50);
+  // Slideshow & indicator dots
+  const slides = project.slides || [];
+  if (dom.modalSlides && dom.modalDots && dom.modalSlideshow) {
+    dom.modalSlides.replaceChildren();
+    dom.modalDots.replaceChildren();
+
+    dom.modalSlideshow.hidden = slides.length === 0;
+    const hasMultiple = slides.length > 1;
+    if (dom.sliderArrowPrev) dom.sliderArrowPrev.hidden = !hasMultiple;
+    if (dom.sliderArrowNext) dom.sliderArrowNext.hidden = !hasMultiple;
+    dom.modalDots.hidden = !hasMultiple;
+
+    slides.forEach((slide, index) => {
+      dom.modalSlides.append(buildSlideElement(slide, index, project.title));
+
+      if (hasMultiple) {
+        const dot = createEl("button", {
+          className: `dot-btn${index === 0 ? " is-active" : ""}`,
+          attrs: {
+            type: "button",
+            "aria-label": `Go to slide ${index + 1}`,
+            "aria-current": index === 0 ? "true" : "false"
+          }
         });
-
-        const totalAnimationTime = 300 + (visibleCards.length * 50) + 200;
-        setTimeout(() => {
-            cards.forEach(card => {
-                card.classList.remove('is-filtering');
-                card.style.opacity = '';
-                card.style.transform = '';
-            });
-            isFilterAnimating = false;
-        }, totalAnimationTime);
-    }, 300);
-}
-
-function renderProjects() {
-    els.grid.innerHTML = '';
-    projects.forEach((project, index) => {
-        const article = document.createElement('article');
-        article.className = 'project-card group cursor-pointer reveal-item';
-        article.dataset.index = String(index);
-        article.tabIndex = 0;
-        article.role = 'listitem';
-        article.setAttribute('aria-label', 'View ' + escapeText(project.name) + ' project details');
-
-        const bgMedia = document.createElement('div');
-        bgMedia.className = 'card-media';
-
-        if (project.image) {
-            const skeleton = document.createElement('div');
-            skeleton.className = 'skeleton img-loading';
-            skeleton.style.position = 'absolute';
-            skeleton.style.inset = '0';
-            bgMedia.appendChild(skeleton);
-
-            const img = document.createElement('img');
-            img.src = project.image;
-            img.alt = escapeText(project.name) + ' thumbnail';
-            img.className = 'project-card-image img-loading';
-            img.loading = 'lazy';
-            img.decoding = 'async';
-
-            img.addEventListener('load', () => {
-                img.classList.remove('img-loading');
-                img.classList.add('img-loaded');
-                skeleton.style.display = 'none';
-            });
-            bgMedia.appendChild(img);
-        }
-
-        const gradientOverlay = document.createElement('div');
-        gradientOverlay.className = 'card-overlay';
-        bgMedia.appendChild(gradientOverlay);
-
-        article.appendChild(bgMedia);
-
-        const content = document.createElement('div');
-        content.className = 'project-card-content';
-
-        const yearBadge = createTagElement(project.year);
-        const titleWrapper = document.createElement('div');
-        titleWrapper.className = 'project-card-header';
-        titleWrapper.appendChild(yearBadge);
-
-        const textWrap = document.createElement('div');
-        
-        const title = document.createElement('h3');
-        title.className = 'project-title';
-        title.textContent = project.name;
-
-        const description = document.createElement('p');
-        description.className = 'project-desc line-clamp-2';
-        description.textContent = project.desc || '';
-
-        textWrap.append(title, description);
-
-        const tagsContainer = document.createElement('div');
-        tagsContainer.className = 'tags-container';
-        project.tags.forEach(tag => tagsContainer.appendChild(createTagElement(tag)));
-
-        content.append(titleWrapper, textWrap, tagsContainer);
-        article.appendChild(content);
-        els.grid.appendChild(article);
-
-        intersectionObserver.observe(article);
-
-        article.addEventListener('click', () => openProject(parseInt(article.dataset.index)));
-        article.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openProject(parseInt(article.dataset.index));
-            }
-        });
+        dot.addEventListener("click", () => setActiveSlide(index));
+        dom.modalDots.append(dot);
+      }
     });
+  }
 }
 
-function updateSlideVisuals(index) {
-    document.querySelectorAll('.slide-item').forEach(s => s.classList.add('opacity-0'));
-    document.querySelectorAll('.slide-dot').forEach(d => d.classList.remove('active'));
-    
-    const slide = document.querySelector('.slide-item[data-slide="' + index + '"]');
-    const dot = document.querySelector('.slide-dot[data-slide="' + index + '"]');
-    
-    if (slide) slide.classList.remove('opacity-0');
-    if (dot) {
-        dot.classList.add('active');
-        dot.setAttribute('aria-pressed', 'true');
+function openProjectModal(project, triggerElement) {
+  if (!dom.projectModal) return;
+
+  state.activeProject = project;
+  state.activeSlideIndex = 0;
+  state.lastFocusedTrigger = triggerElement || document.activeElement;
+
+  populateModalContent(project);
+  dom.modalContent?.scrollTo({ top: 0, behavior: "auto" });
+
+  if (!dom.projectModal.open) {
+    dom.projectModal.showModal();
+  }
+
+  syncHeroVideoPlayback(false);
+}
+
+function initModalControls() {
+  if (!dom.projectModal) return;
+
+  dom.modalClose?.addEventListener("click", () => {
+    dom.projectModal.close();
+  });
+
+  // Dismiss when clicking the native ::backdrop outside .modal-card
+  dom.projectModal.addEventListener("click", (event) => {
+    if (event.target === dom.projectModal) {
+      dom.projectModal.close();
     }
-    
-    document.querySelectorAll('.slide-dot').forEach((d, i) => {
-        if (i !== index) d.setAttribute('aria-pressed', 'false');
-    });
+  });
 
-    if (els.sliderPrev && currentProject) els.sliderPrev.disabled = index === 0;
-    if (els.sliderNext && currentProject) els.sliderNext.disabled = index === currentProject.slides.length - 1;
-}
+  // Clean up embedded media and restore trigger focus whenever modal closes (button, backdrop, or Escape)
+  dom.projectModal.addEventListener("close", () => {
+    dom.modalSlides?.replaceChildren();
+    state.activeProject = null;
+    syncHeroVideoPlayback(true);
 
-function navigateSlide(direction) {
-    if (!currentProject) return;
-    const newIndex = direction === 'prev'
-        ? Math.max(0, currentSlideIndex - 1)
-        : Math.min(currentProject.slides.length - 1, currentSlideIndex + 1);
-
-    if (newIndex !== currentSlideIndex) {
-        currentSlideIndex = newIndex;
-        updateSlideVisuals(newIndex);
-        slideshowPaused = false;
-        restartSlideshow();
+    if (state.lastFocusedTrigger instanceof HTMLElement) {
+      state.lastFocusedTrigger.focus({ preventScroll: true });
+      state.lastFocusedTrigger = null;
     }
-}
+  });
 
-// Attach slider listeners once instead of every open
-els.sliderPrev.addEventListener('click', () => navigateSlide('prev'));
-els.sliderNext.addEventListener('click', () => navigateSlide('next'));
+  dom.sliderArrowPrev?.addEventListener("click", () => {
+    setActiveSlide(state.activeSlideIndex - 1);
+  });
 
-// Touch / Swipe support for sliders
-els.modalSlideshow.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
-els.modalSlideshow.addEventListener('touchend', e => {
-    let touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) navigateSlide('next'); // Swipe left
-    if (touchEndX - touchStartX > 50) navigateSlide('prev'); // Swipe right
-}, {passive: true});
+  dom.sliderArrowNext?.addEventListener("click", () => {
+    setActiveSlide(state.activeSlideIndex + 1);
+  });
 
-// Global Keyboard Navigation
-document.addEventListener('keydown', (e) => {
-    if (!els.modal.classList.contains('invisible')) {
-        if (e.key === 'Escape') {
-            e.preventDefault();
-            closeProject();
-        }
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            navigateSlide('prev');
-        }
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            navigateSlide('next');
-        }
+  // Left / Right keyboard navigation inside open modal
+  dom.projectModal.addEventListener("keydown", (event) => {
+    const slideCount = state.activeProject?.slides?.length || 0;
+    if (slideCount <= 1) return;
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setActiveSlide(state.activeSlideIndex - 1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setActiveSlide(state.activeSlideIndex + 1);
     }
-});
+  });
 
-function openProject(index) {
-    currentProject = projects[index];
-    currentSlideIndex = 0;
-    slideshowPaused = false;
-    lastFocusedElement = document.activeElement;
+  // Pointer swipe support on slideshow stage
+  dom.modalSlideshow?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    state.swipeStartX = event.clientX;
+  });
 
-    // Utilize DOM Caching - Avoid recreation
-    els.modalTitle.textContent = currentProject.name;
-    els.modalDesc.textContent = currentProject.desc || '';
+  dom.modalSlideshow?.addEventListener("pointerup", (event) => {
+    if (state.swipeStartX === null) return;
+    const deltaX = event.clientX - state.swipeStartX;
+    state.swipeStartX = null;
 
-    // Action Links (Security implemented via target & rel)
-    els.modalActions.innerHTML = '';
-    if (currentProject.liveUrl && currentProject.liveUrl !== '#') {
-        els.modalActions.innerHTML += `<a href="${currentProject.liveUrl}" target="_blank" rel="noopener noreferrer" class="action-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg> Live Demo
-        </a>`;
+    if (Math.abs(deltaX) >= 44) {
+      setActiveSlide(deltaX < 0 ? state.activeSlideIndex + 1 : state.activeSlideIndex - 1);
     }
-    if (currentProject.repoUrl && currentProject.repoUrl !== '#') {
-        els.modalActions.innerHTML += `<a href="${currentProject.repoUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn--outline">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg> Repository
-        </a>`;
-    }
+  });
 
-    els.modalTags.innerHTML = '';
-    currentProject.tags.forEach(tag => els.modalTags.appendChild(createTagElement(tag)));
-
-    els.modalMeta.innerHTML = '';
-    const metaItems = [
-        { label: 'Year', value: currentProject.year },
-        { label: 'Category', value: currentProject.category || '-' },
-        { label: 'Duration', value: currentProject.duration || '-' },
-        { label: 'Status', value: currentProject.status || '-' }
-    ];
-    metaItems.forEach(item => {
-        els.modalMeta.innerHTML += `<div><p class="meta-label">${item.label}</p><p class="meta-value">${escapeText(item.value)}</p></div>`;
-    });
-
-    els.modalSlides.innerHTML = '';
-    els.modalDots.innerHTML = '';
-
-    currentProject.slides.forEach((slide, i) => {
-        const slideDiv = document.createElement('div');
-        slideDiv.className = 'slide-item opacity-0';
-        slideDiv.dataset.slide = String(i);
-
-        const img = document.createElement('img');
-        img.src = currentProject.slideImages[i];
-        img.alt = escapeText(slide) || ('Slide ' + (i + 1));
-        img.loading = i === 0 ? 'eager' : 'lazy';
-        img.decoding = 'async';
-
-        slideDiv.appendChild(img);
-        els.modalSlides.appendChild(slideDiv);
-
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.dataset.slide = String(i);
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + escapeText(slide || ('Slide ' + (i + 1))));
-        dot.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-
-        dot.addEventListener('click', () => {
-            currentSlideIndex = i;
-            updateSlideVisuals(i);
-            slideshowPaused = false;
-            restartSlideshow();
-        });
-
-        els.modalDots.appendChild(dot);
-    });
-
-    els.modal.classList.remove('invisible', 'opacity-0');
-    els.modalContent.classList.remove('opacity-0');
-    els.modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    requestAnimationFrame(() => els.modalClose.focus());
-
-    // Focus Trapping logic specific to modal content limits
-    function trapFocus(element) {
-        const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        element.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                if (e.shiftKey && document.activeElement === first) {
-                    e.preventDefault();
-                    last.focus();
-                } else if (!e.shiftKey && document.activeElement === last) {
-                    e.preventDefault();
-                    first.focus();
-                }
-            }
-        });
-    }
-    trapFocus(els.modalContent);
-
-    els.modalSlideshow.addEventListener('mouseenter', () => { slideshowPaused = true; });
-    els.modalSlideshow.addEventListener('mouseleave', () => { slideshowPaused = false; });
-
-    const firstSlide = document.querySelector('.slide-item[data-slide="0"]');
-    if (firstSlide) firstSlide.classList.remove('opacity-0');
-
-    els.sliderPrev.disabled = true;
-    startSlideshow();
+  dom.modalSlideshow?.addEventListener("pointercancel", () => {
+    state.swipeStartX = null;
+  });
 }
 
-function closeProject() {
-    els.modal.classList.add('opacity-0');
-    els.modalContent.classList.add('opacity-0');
-    setTimeout(() => {
-        els.modal.classList.add('invisible');
-        els.modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        stopSlideshow();
-        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
-    }, 200);
+/* ==========================================================================
+   8. Initialization
+   ========================================================================== */
+
+function dismissLoadingOverlay() {
+  if (!dom.loadingOverlay) return;
+  dom.loadingOverlay.setAttribute("aria-busy", "false");
+  dom.loadingOverlay.hidden = true;
 }
 
-function startSlideshow() {
-    if (prefersReducedMotion) return;
-    stopSlideshow();
-    slideInterval = setInterval(() => {
-        if (!slideshowPaused) {
-            const nextIndex = (currentSlideIndex + 1) % currentProject.slides.length;
-            updateSlideVisuals(nextIndex);
-            currentSlideIndex = nextIndex;
-        }
-    }, 4000);
+function init() {
+  renderFilters();
+  renderProjectsGrid();
+  observeRevealItems(Array.from(document.querySelectorAll(".section-header.reveal-item, .filters-wrapper.reveal-item")));
+  initNavigation();
+  initHeroAndScrollObservers();
+  initModalControls();
+  dismissLoadingOverlay();
 }
 
-function restartSlideshow() { startSlideshow(); }
-
-function stopSlideshow() {
-    if (slideInterval) {
-        clearInterval(slideInterval);
-        slideInterval = null;
-    }
-}
-
-// Menu Nav Logics
-if (els.menuBtn && els.menuDropdown) {
-    els.menuBtn.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-            els.menuBtn.classList.add('active');
-            els.menuDropdown.classList.remove('opacity-0', 'invisible');
-            els.menuDropdown.setAttribute('aria-hidden', 'false');
-            els.menuBtn.setAttribute('aria-expanded', 'true');
-            setTimeout(() => {
-                const firstLink = els.menuDropdown.querySelector('a');
-                if (firstLink) firstLink.focus();
-            }, 100);
-        } else {
-            els.menuBtn.classList.remove('active');
-            closeMenu();
-        }
-    });
-
-    document.addEventListener('click', (e) => {
-        if (isMenuOpen && !els.menuBtn.contains(e.target) && !els.menuDropdown.contains(e.target)) {
-            els.menuBtn.classList.remove('active');
-            closeMenu();
-        }
-    });
-
-    els.menuDropdown.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href');
-            if (targetId && targetId.startsWith('#')) {
-                e.preventDefault();
-                if (isMenuOpen) {
-                    els.menuBtn.classList.remove('active');
-                    closeMenu();
-                }
-                const targetEl = document.getElementById(targetId.slice(1));
-                if (targetEl) {
-                    setTimeout(() => {
-                        targetEl.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-                    }, 150);
-                }
-            }
-        });
-    });
-}
-
-function closeMenu() {
-    isMenuOpen = false;
-    els.menuDropdown.classList.add('opacity-0', 'invisible');
-    els.menuDropdown.setAttribute('aria-hidden', 'true');
-    els.menuBtn.setAttribute('aria-expanded', 'false');
-}
-
-if (els.scrollBtn) {
-    els.scrollBtn.addEventListener('click', () => {
-        if (els.portfolioSection) els.portfolioSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-    });
-}
-
-// Performance Enhancement: IntersectionObserver for Back to Top Button
-if (els.backToTop && els.heroSection) {
-    const backToTopObserver = new IntersectionObserver((entries) => {
-        // If hero section is NOT intersecting (out of view), show the button
-        if (!entries[0].isIntersecting) {
-            els.backToTop.classList.add('visible');
-        } else {
-            els.backToTop.classList.remove('visible');
-        }
-    }, { rootMargin: "0px", threshold: 0 }); // Triggers exactly when the hero leaves/enters viewport
-    
-    backToTopObserver.observe(els.heroSection);
-
-    els.backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-    });
-}
-
-if (els.modalClose && els.modalBackdrop) {
-    els.modalClose.addEventListener('click', closeProject);
-    els.modalBackdrop.addEventListener('click', closeProject);
-}
-
-const contentReady = new Promise(resolve => {
-    if (document.readyState === 'complete') resolve();
-    else window.addEventListener('load', resolve);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderFilters();
-    renderProjects();
-
-    document.querySelectorAll('.reveal-item').forEach(item => intersectionObserver.observe(item));
-    if (els.portfolioSection) sectionObserver.observe(els.portfolioSection);
-
-    const minDisplay = 300;
-    const readyTime = Date.now();
-
-    contentReady.then(() => {
-        const remaining = Math.max(0, minDisplay - (Date.now() - readyTime));
-        setTimeout(() => {
-            els.loading.classList.add('opacity-0');
-            setTimeout(() => els.loading.classList.add('hidden'), 500);
-        }, remaining);
-    });
-});
-
-const heroVideo = document.querySelector('.hero-video-container');
-if (heroVideo) {
-    heroVideo.addEventListener('error', () => {
-        const fallback = document.querySelector('.hero-fallback');
-        if (fallback) fallback.style.display = 'block';
-    });
-}
-
-window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-    if (e.matches) stopSlideshow();
-    else if (currentProject) startSlideshow();
-});
+init();
